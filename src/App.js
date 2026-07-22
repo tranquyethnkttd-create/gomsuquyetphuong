@@ -27,24 +27,16 @@ function App() {
   const [isAdminView, setIsAdminView] = useState(false);
 
   useEffect(() => {
-    document.title = "Gốm Sứ Quyết Phương - Đồ Thờ & Phong Thủy";
-  }, []);
-
-  // Fetch API từ database.json
-  useEffect(() => {
-    fetch('/database.json')
-      .then(res => res.json())
-      .then(data => {
-
-      })
     setLoading(true);
-    fetch('http://localhost:3000/products')
+    fetch('/database.json')
       .then(res => {
-        if (!res.ok) throw new Error('Không thể kết nối đến API server');
+        if (!res.ok) throw new Error('Không thể tải dữ liệu từ database.json');
         return res.json();
       })
       .then(data => {
-        setProducts(data);
+
+        const productList = Array.isArray(data) ? data : (data.products || []);
+        setProducts(productList);
         setLoading(false);
       })
       .catch(err => {

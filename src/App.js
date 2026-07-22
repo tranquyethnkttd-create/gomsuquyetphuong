@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col, Card, Button, Table } from 'react-bootstrap';
+import databaseData from '../database.json';
 
+console.log(databaseData);
 // Import các components con
 import Header from './components/Header';
 import Footer from './components/Footer';

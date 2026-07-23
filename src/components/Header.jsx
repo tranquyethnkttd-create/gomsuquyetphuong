@@ -49,27 +49,63 @@ function Header({
             onClick={handleGoHome}
             className="fw-bold text-white fs-4 d-flex align-items-center gap-2 text-decoration-none"
           >
-            {/* Biểu tượng Bình Gốm Phong Thủy thuần SVG */}
+            {/* SVG LOGO CHUẨN THEO MẪU QUYẾT PHƯƠNG GỐM SỨ BÁT TRÀNG */}
             <svg
-              width="42"
-              height="42"
-              viewBox="0 0 64 64"
-              fill="none"
+              width="48"
+              height="48"
+              viewBox="0 0 200 200"
               xmlns="http://www.w3.org/2000/svg"
-              style={{ filter: 'drop-shadow(0px 2px 4px rgba(0,0,0,0.3))' }}
+              style={{ filter: 'drop-shadow(0px 2px 5px rgba(0,0,0,0.4))' }}
             >
-              {/* Vòng tròn viền vàng */}
-              <circle cx="32" cy="32" r="30" fill="#8B0000" stroke="#FFD700" strokeWidth="2" />
-              {/* Miệng bình gốm */}
-              <ellipse cx="32" cy="18" rx="8" ry="3" fill="#FFD700" />
-              {/* Cổ bình */}
-              <path d="M25 19 L26 25 L38 25 L39 19 Z" fill="#FFD700" />
-              {/* Thân bình tài lộc */}
-              <path d="M26 25 C18 30 16 42 22 48 C26 52 38 52 42 48 C48 42 46 30 38 25 Z" fill="#FFD700" />
-              {/* Họa tiết đai bình */}
-              <path d="M20 36 Q32 40 44 36" stroke="#8B0000" strokeWidth="2" fill="none" />
-              {/* Chân đế */}
-              <rect x="26" y="49" width="12" height="3" rx="1" fill="#DAA520" />
+              <defs>
+                <radialGradient id="bgGrad" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stopColor="#4A1010" />
+                  <stop offset="100%" stopColor="#250505" />
+                </radialGradient>
+                <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#FFE082" />
+                  <stop offset="50%" stopColor="#FFB300" />
+                  <stop offset="100%" stopColor="#FF8F00" />
+                </linearGradient>
+              </defs>
+
+              {/* Nền tròn đỏ đô đậm */}
+              <circle cx="100" cy="100" r="96" fill="url(#bgGrad)" />
+
+              {/* Vòng viền vàng ngoài cùng */}
+              <circle cx="100" cy="100" r="92" fill="none" stroke="url(#goldGrad)" strokeWidth="6" />
+
+              {/* Vòng viền vàng trong */}
+              <circle cx="100" cy="100" r="82" fill="none" stroke="url(#goldGrad)" strokeWidth="2" />
+
+              {/* Vòng nét đứt sang trọng */}
+              <circle cx="100" cy="100" r="76" fill="none" stroke="url(#goldGrad)" strokeWidth="1.5" strokeDasharray="4 3" />
+
+              {/* Biểu tượng Hoa Sen 3 Cánh */}
+              {/* Cánh giữa */}
+              <path d="M 100 45 C 80 70 85 105 100 112 C 115 105 120 70 100 45 Z" fill="url(#goldGrad)" />
+
+              {/* Cánh trái */}
+              <path d="M 100 112 C 70 100 55 65 72 56 C 88 50 96 80 100 112 Z" fill="none" stroke="url(#goldGrad)" strokeWidth="4" strokeLinecap="round" />
+
+              {/* Cánh phải */}
+              <path d="M 100 112 C 130 100 145 65 128 56 C 112 50 104 80 100 112 Z" fill="none" stroke="url(#goldGrad)" strokeWidth="4" strokeLinecap="round" />
+
+              {/* Đế đệm hình thuyền dưới hoa sen */}
+              <path d="M 76 116 Q 100 132 124 116 Q 100 126 76 116 Z" fill="url(#goldGrad)" />
+
+              {/* Text: QUYẾT PHƯƠNG */}
+              <text x="100" y="148" textAnchor="middle" fill="url(#goldGrad)" fontSize="16" fontFamily="Arial, sans-serif" fontWeight="900" letterSpacing="1">
+                QUYẾT PHƯƠNG
+              </text>
+
+              {/* Text: GỐM SỨ BÁT TRÀNG */}
+              <text x="100" y="165" textAnchor="middle" fill="#FFFFFF" fontSize="10" fontFamily="Arial, sans-serif" fontWeight="bold" letterSpacing="1.5">
+                GỐM SỨ BÁT TRÀNG
+              </text>
+
+              {/* Chấm tròn phong thủy phía dưới */}
+              <circle cx="100" cy="177" r="2.5" fill="url(#goldGrad)" />
             </svg>
 
             <div>

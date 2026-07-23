@@ -49,7 +49,7 @@ function Header({
             onClick={handleGoHome}
             className="fw-bold text-white fs-4 d-flex align-items-center gap-2 text-decoration-none"
           >
-            {/* SVG LOGO CHUẨN THEO MẪU QUYẾT PHƯƠNG GỐM SỨ BÁT TRÀNG */}
+            {/* SVG LOGO */}
             <svg
               width="48"
               height="48"
@@ -69,42 +69,22 @@ function Header({
                 </linearGradient>
               </defs>
 
-              {/* Nền tròn đỏ đô đậm */}
               <circle cx="100" cy="100" r="96" fill="url(#bgGrad)" />
-
-              {/* Vòng viền vàng ngoài cùng */}
               <circle cx="100" cy="100" r="92" fill="none" stroke="url(#goldGrad)" strokeWidth="6" />
-
-              {/* Vòng viền vàng trong */}
               <circle cx="100" cy="100" r="82" fill="none" stroke="url(#goldGrad)" strokeWidth="2" />
-
-              {/* Vòng nét đứt sang trọng */}
               <circle cx="100" cy="100" r="76" fill="none" stroke="url(#goldGrad)" strokeWidth="1.5" strokeDasharray="4 3" />
 
-              {/* Biểu tượng Hoa Sen 3 Cánh */}
-              {/* Cánh giữa */}
               <path d="M 100 45 C 80 70 85 105 100 112 C 115 105 120 70 100 45 Z" fill="url(#goldGrad)" />
-
-              {/* Cánh trái */}
               <path d="M 100 112 C 70 100 55 65 72 56 C 88 50 96 80 100 112 Z" fill="none" stroke="url(#goldGrad)" strokeWidth="4" strokeLinecap="round" />
-
-              {/* Cánh phải */}
               <path d="M 100 112 C 130 100 145 65 128 56 C 112 50 104 80 100 112 Z" fill="none" stroke="url(#goldGrad)" strokeWidth="4" strokeLinecap="round" />
-
-              {/* Đế đệm hình thuyền dưới hoa sen */}
               <path d="M 76 116 Q 100 132 124 116 Q 100 126 76 116 Z" fill="url(#goldGrad)" />
 
-              {/* Text: QUYẾT PHƯƠNG */}
               <text x="100" y="148" textAnchor="middle" fill="url(#goldGrad)" fontSize="16" fontFamily="Arial, sans-serif" fontWeight="900" letterSpacing="1">
                 QUYẾT PHƯƠNG
               </text>
-
-              {/* Text: GỐM SỨ BÁT TRÀNG */}
               <text x="100" y="165" textAnchor="middle" fill="#FFFFFF" fontSize="10" fontFamily="Arial, sans-serif" fontWeight="bold" letterSpacing="1.5">
                 GỐM SỨ BÁT TRÀNG
               </text>
-
-              {/* Chấm tròn phong thủy phía dưới */}
               <circle cx="100" cy="177" r="2.5" fill="url(#goldGrad)" />
             </svg>
 
@@ -141,10 +121,10 @@ function Header({
 
             {currentUser ? (
               <Dropdown align="end">
+                {/* 🔥 ĐÃ BỎ onClick={handleOpenUserPage} Ở ĐÂY ĐỂ MENU THẢ XUỐNG BÌNH THƯỜNG */}
                 <Dropdown.Toggle
                   variant="link"
                   id="dropdown-user"
-                  onClick={handleOpenUserPage}
                   className="text-white text-decoration-none fw-semibold d-flex align-items-center gap-2 p-0 border-0"
                 >
                   <span className="bg-warning text-dark rounded-circle d-inline-flex align-items-center justify-content-center fw-bold" style={{ width: '32px', height: '32px' }}>
@@ -154,7 +134,7 @@ function Header({
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu className="shadow-lg border-0 py-2 mt-2" style={{ minWidth: '230px' }}>
-                  <div className="px-3 py-2 mb-1 border-bottom bg-light cursor-pointer" onClick={handleOpenUserPage}>
+                  <div className="px-3 py-2 mb-1 border-bottom bg-light cursor-pointer" onClick={handleOpenUserPage} style={{ cursor: 'pointer' }}>
                     <p className="mb-0 small text-muted">Tài khoản của bạn</p>
                     <p className="mb-0 fw-bold text-truncate text-dark" style={{ maxWidth: '190px' }}>
                       {currentUser.email || currentUser.username}
@@ -181,7 +161,9 @@ function Header({
                   )}
 
                   <Dropdown.Divider />
-                  <Dropdown.Item onClick={onLogout} className="py-2 text-danger">
+
+                  {/* 🎯 NÚT ĐĂNG XUẤT CỦA BRO Ở ĐÂY */}
+                  <Dropdown.Item onClick={onLogout} className="py-2 text-danger fw-bold">
                     🚪 Đăng xuất
                   </Dropdown.Item>
                 </Dropdown.Menu>

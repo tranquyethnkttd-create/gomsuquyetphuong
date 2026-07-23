@@ -1,14 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Modal, Tabs, Tab, Button, Form, Table, Badge } from 'react-bootstrap';
 
 function UserProfileModal({ show, onHide, currentUser, orders = [] }) {
     const [activeTab, setActiveTab] = useState('info');
+
+    // Khởi tạo state rỗng, không hardcode giá trị mặc định nữa
     const [userInfo, setUserInfo] = useState({
-        username: currentUser?.username || '',
-        email: currentUser?.email || '',
-        phone: currentUser?.phone || '0913767574',
-        address: currentUser?.address || 'Hà Nội'
+        username: '',
+        email: '',
+        phone: '',
+        address: ''
     });
+
+    // 🎯 FIX LỖI: Đồng bộ state userInfo mỗi khi currentUser hoặc modal mở lên
+    useEffect(() => {
+        if (currentUser) {
+            setUserInfo({
+                username: currentUser.username || currentUser.name || '',
+                email: currentUser.email || '',
+                phone: currentUser.phone || '', // Không dán cứng 0913... vào đây nữa
+                address: currentUser.address || ''
+            });
+        }
+    }, [currentUser, show]);
 
     const handleSave = (e) => {
         e.preventDefault();
@@ -43,6 +57,7 @@ function UserProfileModal({ show, onHide, currentUser, orders = [] }) {
                                 <Form.Label className="fw-semibold">Số điện thoại</Form.Label>
                                 <Form.Control
                                     type="text"
+                                    placeholder="Chưa có số điện thoại"
                                     value={userInfo.phone}
                                     onChange={(e) => setUserInfo({ ...userInfo, phone: e.target.value })}
                                 />
@@ -84,9 +99,9 @@ function UserProfileModal({ show, onHide, currentUser, orders = [] }) {
                         <div className="border rounded p-3 mb-3 bg-light">
                             <div className="d-flex justify-content-between align-items-center">
                                 <div>
-                                    <h6 className="fw-bold mb-1">{userInfo.username} <Badge bg="success" className="ms-2">Mặc định</Badge></h6>
-                                    <p className="mb-1 text-muted small">Địa chỉ: {userInfo.address}</p>
-                                    <p className="mb-0 text-muted small">Điện thoại: {userInfo.phone}</p>
+                                    <h6 className="fw-bold mb-1">{userInfo.username || 'Khách hàng'} <Badge bg="success" className="ms-2">Mặc định</Badge></h6>
+                                    <p className="mb-1 text-muted small">Địa chỉ: {userInfo.address || 'Chưa cập nhật'}</p>
+                                    <p className="mb-0 text-muted small">Điện thoại: {userInfo.phone || 'Chưa cập nhật'}</p>
                                 </div>
                                 <Button variant="outline-dark" size="sm">Chỉnh sửa</Button>
                             </div>

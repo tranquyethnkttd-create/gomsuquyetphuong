@@ -9,7 +9,7 @@ import ProductCard from './components/ProductCard';
 import ProductDetail from './components/ProductDetail';
 import CartDrawer from './components/CartDrawer';
 import AuthModal from './components/AuthModal';
-import UserProfilePage from './components/UserProfilePage'; // <-- Import trang User kiểu Shopee
+import UserProfilePage from './components/UserProfilePage'; // Trang User kiểu Shopee
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -22,12 +22,14 @@ function App() {
   const [cart, setCart] = useState([]);
   const [showCart, setShowCart] = useState(false);
 
-  // States quản lý Auth & Admin
-  const [currentUser, setCurrentUser] = useState(null);
+  // 🎯 FIX LỖI 1: Tự động lấy user đã lưu trong localStorage khi vừa mở App
+  const [currentUser, setCurrentUser] = useState(() => {
+    const savedUser = localStorage.getItem("user");
+    return savedUser ? JSON.parse(savedUser) : null;
+  });
+
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [isAdminView, setIsAdminView] = useState(false);
-
-  // State điều khiển hiển thị trang User Dashboard kiểu Shopee
   const [isUserPage, setIsUserPage] = useState(false);
 
   useEffect(() => {
@@ -75,6 +77,21 @@ function App() {
   const selectedProduct = products.find(p => p.id === selectedProductId);
   const totalCartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
 
+  // 🎯 FIX LỖI 2: Hàm xử lý Đăng nhập / Đăng ký thành công -> Lưu luôn vào localStorage
+  const handleLoginSuccess = (user) => {
+    setCurrentUser(user);
+    localStorage.setItem("user", JSON.stringify(user)); // Lưu user mới vào Storage
+    setShowAuthModal(false);
+  };
+
+  // 🎯 FIX LỖI 3: Hàm Đăng xuất -> Xóa sạch user trong localStorage
+  const handleLogout = () => {
+    setCurrentUser(null);
+    localStorage.removeItem("user"); // Clear session cũ
+    setIsAdminView(false);
+    setIsUserPage(false);
+  };
+
   return (
     <div className="bg-light min-vh-100 d-flex flex-column">
       {/* Header */}
@@ -83,23 +100,19 @@ function App() {
         setSearchQuery={setSearchQuery}
         setSelectedCategory={(cat) => {
           setSelectedCategory(cat);
-          setIsUserPage(false); // Đóng trang user khi chọn danh mục
+          setIsUserPage(false);
         }}
         setSelectedProductId={(id) => {
           setSelectedProductId(id);
-          setIsUserPage(false); // Đóng trang user khi chọn sản phẩm
+          setIsUserPage(false);
         }}
         totalCartCount={totalCartCount}
         setShowCart={setShowCart}
         currentUser={currentUser}
         onOpenAuth={() => setShowAuthModal(true)}
-        onLogout={() => {
-          setCurrentUser(null);
-          setIsAdminView(false);
-          setIsUserPage(false);
-        }}
+        onLogout={handleLogout}
         setIsAdminView={setIsAdminView}
-        setIsUserPage={setIsUserPage} /* <-- TRUYỀN HÀM CHUYỂN TRANG USER */
+        setIsUserPage={setIsUserPage}
       />
 
       {/* Main Content */}
@@ -247,7 +260,7 @@ function App() {
       <AuthModal
         show={showAuthModal}
         onHide={() => setShowAuthModal(false)}
-        onLoginSuccess={(user) => setCurrentUser(user)}
+        onLoginSuccess={handleLoginSuccess}
       />
 
       {/* Footer */}

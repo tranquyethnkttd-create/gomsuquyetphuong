@@ -22,11 +22,14 @@ function App() {
   const [cart, setCart] = useState([]);
   const [showCart, setShowCart] = useState(false);
 
-  // 🎯 FIX LỖI 1: Tự động lấy user đã lưu trong localStorage khi vừa mở App
+  // 🎯 Lấy user đã lưu trong localStorage khi vừa mở App
   const [currentUser, setCurrentUser] = useState(() => {
     const savedUser = localStorage.getItem("user");
     return savedUser ? JSON.parse(savedUser) : null;
   });
+
+  // 🎯 State lưu sản phẩm đang chờ thêm (trong trường hợp bắt đăng nhập trước)
+  const [pendingProduct, setPendingProduct] = useState(null);
 
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [isAdminView, setIsAdminView] = useState(false);
@@ -51,7 +54,16 @@ function App() {
       });
   }, []);
 
+  // 🎯 XỬ LÝ THÊM VÀO GIỎ HÀNG (Yêu cầu đăng nhập)
   const addToCart = (product) => {
+    // Nếu chưa đăng nhập -> Chặn lại và mở AuthModal
+    if (!currentUser) {
+      setPendingProduct(product); // Lưu tạm sản phẩm người dùng đang chọn
+      setShowAuthModal(true);     // Bật Popup đăng nhập
+      return;
+    }
+
+    // Nếu đã đăng nhập -> Thêm sản phẩm vào giỏ bình thường
     setCart(prevCart => {
       const existing = prevCart.find(item => item.id === product.id);
       if (existing) {
@@ -77,17 +89,23 @@ function App() {
   const selectedProduct = products.find(p => p.id === selectedProductId);
   const totalCartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
 
-  // 🎯 FIX LỖI 2: Hàm xử lý Đăng nhập / Đăng ký thành công -> Lưu luôn vào localStorage
+  // 🎯 Xử lý Đăng nhập / Đăng ký thành công
   const handleLoginSuccess = (user) => {
     setCurrentUser(user);
     localStorage.setItem("user", JSON.stringify(user)); // Lưu user mới vào Storage
     setShowAuthModal(false);
+
+    // Nếu trước đó đang bấm dở "Thêm vào giỏ" -> Tự động thêm luôn cho user
+    if (pendingProduct) {
+      addToCart(pendingProduct);
+      setPendingProduct(null); // Reset sau khi đã thêm xong
+    }
   };
 
-  // 🎯 FIX LỖI 3: Hàm Đăng xuất -> Xóa sạch user trong localStorage
+  // 🎯 Hàm Đăng xuất
   const handleLogout = () => {
     setCurrentUser(null);
-    localStorage.removeItem("user"); // Clear session cũ
+    localStorage.removeItem("user"); // Clear session
     setIsAdminView(false);
     setIsUserPage(false);
   };
@@ -230,6 +248,7 @@ function App() {
                     product={p}
                     setSelectedProductId={setSelectedProductId}
                     addToCart={addToCart}
+                    cart={cart}
                   />
                 </Col>
               ))}
@@ -259,7 +278,10 @@ function App() {
       {/* Modal Đăng nhập / Đăng ký */}
       <AuthModal
         show={showAuthModal}
-        onHide={() => setShowAuthModal(false)}
+        onHide={() => {
+          setShowAuthModal(false);
+          setPendingProduct(null); // Reset sản phẩm chờ nếu đóng modal mà không đăng nhập
+        }}
         onLoginSuccess={handleLoginSuccess}
       />
 

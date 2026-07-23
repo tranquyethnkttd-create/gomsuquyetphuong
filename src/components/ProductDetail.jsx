@@ -18,7 +18,7 @@ function ProductDetail({ selectedProduct, setSelectedProductId, addToCart }) {
 
   // Hàm xử lý khi bấm Thêm vào giỏ hàng
   const handleAddToCart = () => {
-    addToCart(selectedProduct, quantity); // Giả sử hàm addToCart của bạn nhận tham số quantity
+    addToCart(selectedProduct, quantity);
     alert('Đã thêm sản phẩm vào giỏ hàng!');
   };
 
@@ -89,7 +89,7 @@ function ProductDetail({ selectedProduct, setSelectedProductId, addToCart }) {
             </div>
 
             {/* Tên sản phẩm - Font chữ sang trọng, cứng cáp */}
-            <h1 className="fw-bold text-dark fs-3 mb-3" style={{ fontFamily: 'Georgia, serif' }}>
+            <h1 className="fw-bold text-dark fs-3 mb-3" style={{ fontFamily: '"Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }}>
               {selectedProduct.name}
             </h1>
 

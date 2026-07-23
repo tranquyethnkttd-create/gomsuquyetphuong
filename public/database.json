@@ -207,6 +207,30 @@
                 "2 Nậm rượu dáng hồ lô",
                 "1 Đèn dầu gốm sứ phong thủy"
             ]
+        },
+        {
+            "id": 101,
+            "name": "Chum Rượu Sành Bát Tràng Hạ Thổ 20 Lít",
+            "category": "Chum rượu",
+            "price": "850.000 đ",
+            "image": "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=500",
+            "description": "Chum sành không tráng men giúp khử độc tố Aldehyde, thích hợp hạ thổ rượu."
+        },
+        {
+            "id": 102,
+            "name": "Chĩnh Gạo Sành Phong Thủy Tài Lộc 15kg",
+            "category": "Chĩnh gạo",
+            "price": "680.000 đ",
+            "image": "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=500",
+            "description": "Chĩnh gạo tráng men vẽ chữ Tài Lộc, giữ gạo chống ẩm mốc và mang lại may mắn."
+        },
+        {
+            "id": 103,
+            "name": "Chậu Cảnh Gốm Sứ Đất Nung Khảm Hoa Văn Bát Tràng",
+            "category": "Chậu cảnh",
+            "price": "450.000 đ",
+            "image": "https://images.unsplash.com/photo-1485955900006-10f4d324d411?w=500",
+            "description": "Chậu trồng cây cảnh, bonsai bằng gốm nung nhiệt độ cao durable và tinh xảo."
         }
     ]
 }

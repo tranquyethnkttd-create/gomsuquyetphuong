@@ -9,6 +9,7 @@ import ProductCard from './components/ProductCard';
 import ProductDetail from './components/ProductDetail';
 import CartDrawer from './components/CartDrawer';
 import AuthModal from './components/AuthModal';
+import UserProfilePage from './components/UserProfilePage'; // <-- Import trang User kiểu Shopee
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -26,6 +27,9 @@ function App() {
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [isAdminView, setIsAdminView] = useState(false);
 
+  // State điều khiển hiển thị trang User Dashboard kiểu Shopee
+  const [isUserPage, setIsUserPage] = useState(false);
+
   useEffect(() => {
     setLoading(true);
     fetch('/database.json')
@@ -34,7 +38,6 @@ function App() {
         return res.json();
       })
       .then(data => {
-
         const productList = Array.isArray(data) ? data : (data.products || []);
         setProducts(productList);
         setLoading(false);
@@ -78,8 +81,14 @@ function App() {
       <Header
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
-        setSelectedCategory={setSelectedCategory}
-        setSelectedProductId={setSelectedProductId}
+        setSelectedCategory={(cat) => {
+          setSelectedCategory(cat);
+          setIsUserPage(false); // Đóng trang user khi chọn danh mục
+        }}
+        setSelectedProductId={(id) => {
+          setSelectedProductId(id);
+          setIsUserPage(false); // Đóng trang user khi chọn sản phẩm
+        }}
         totalCartCount={totalCartCount}
         setShowCart={setShowCart}
         currentUser={currentUser}
@@ -87,14 +96,23 @@ function App() {
         onLogout={() => {
           setCurrentUser(null);
           setIsAdminView(false);
+          setIsUserPage(false);
         }}
         setIsAdminView={setIsAdminView}
+        setIsUserPage={setIsUserPage} /* <-- TRUYỀN HÀM CHUYỂN TRANG USER */
       />
 
       {/* Main Content */}
       <Container className="my-4 flex-grow-1">
-        {/* Màn hình Admin khi đăng nhập bằng quyền Admin */}
-        {isAdminView && currentUser?.role === 'admin' ? (
+        {/* 1. HIỂN THỊ TRANG USER DASHBOARD KIỂU SHOPEE */}
+        {isUserPage ? (
+          <UserProfilePage
+            currentUser={currentUser}
+            orders={cart}
+            onBackToHome={() => setIsUserPage(false)}
+          />
+        ) : isAdminView && currentUser?.role === 'admin' ? (
+          /* 2. TRANG ADMIN */
           <div className="bg-white p-4 rounded shadow-sm">
             <div className="d-flex justify-content-between align-items-center mb-4">
               <h3 className="text-danger fw-bold m-0">⚙️ Trang Quản Lý Sản Phẩm (Admin)</h3>
@@ -144,6 +162,7 @@ function App() {
             <h3>❌ Lỗi kết nối API: {error}</h3>
           </div>
         ) : !selectedProductId ? (
+          /* 3. TRANG CHỦ & DANH SÁCH SẢN PHẨM */
           <>
             {/* Banner Section */}
             <div className="p-5 mb-4 text-white rounded-3 shadow" style={{ background: 'linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url("https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=1200") center/cover' }}>
@@ -177,11 +196,11 @@ function App() {
 
             {/* Category Filter Pills */}
             <div className="d-flex justify-content-center gap-2 mb-4 flex-wrap">
-              {['Tất cả', 'Đồ thờ cúng', 'Đồ phong thủy', 'Gốm sứ tâm linh'].map(cat => (
+              {['Tất cả', 'Đồ thờ cúng', 'Chum rượu', 'Chĩnh gạo', 'Chậu cảnh', 'Đồ phong thủy', 'Gốm sứ tâm linh'].map(cat => (
                 <Button
                   key={cat}
                   variant={selectedCategory === cat ? 'danger' : 'outline-danger'}
-                  className="rounded-pill px-4 fw-semibold"
+                  className="rounded-pill px-3 fw-semibold"
                   onClick={() => setSelectedCategory(cat)}
                 >
                   {cat}
@@ -204,7 +223,7 @@ function App() {
             </Row>
           </>
         ) : (
-          /* Detailed View */
+          /* 4. TRANG CHI TIẾT SẢN PHẨM */
           selectedProduct && (
             <ProductDetail
               selectedProduct={selectedProduct}

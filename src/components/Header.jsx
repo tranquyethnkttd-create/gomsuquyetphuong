@@ -16,13 +16,13 @@ function Header({
 }) {
   const [showMegaMenu, setShowMegaMenu] = useState(false);
 
-  // HÀM RESET VỀ TRANG CHỦ HIỂN THỊ TẤT CẢ SẢN PHẨM
+  // Hàm quay về Trang chủ hiển thị tất cả sản phẩm
   const handleGoHome = () => {
-    setSelectedProductId(null);              // Đóng chi tiết sản phẩm nếu đang mở
-    setIsAdminView(false);                   // Thoát trang Admin
-    if (setIsUserPage) setIsUserPage(false); // Thoát trang User Dashboard
-    setSelectedCategory('Tất cả');           // Reset danh mục về Tất cả
-    setSearchQuery('');                      // Xóa ô tìm kiếm
+    setSelectedProductId(null);
+    setIsAdminView(false);
+    if (setIsUserPage) setIsUserPage(false);
+    setSelectedCategory('Tất cả');
+    setSearchQuery('');
   };
 
   const handleOpenUserPage = () => {
@@ -42,12 +42,29 @@ function Header({
       {/* 2. Main Navigation Bar */}
       <Navbar style={{ backgroundColor: '#5e2828ff' }} expand="lg" className="py-3 border-bottom position-relative">
         <Container>
-          {/* Logo - Bấm vào cũng quay về Trang chủ đầy đủ */}
-          <Navbar.Brand href="#" onClick={handleGoHome} className="fw-bold text-white fs-4">
-            GỐM SỨ QUYẾT PHƯƠNG
-            <span className="d-block text-warning fw-semibold" style={{ fontSize: '11px', letterSpacing: '1px' }}>
-              ĐỒ THỜ - ĐỒ PHONG THỦY - GỐM SỨ TÂM LINH
-            </span>
+
+          {/* LOGO VÀ TÊN THƯƠNG HIỆU */}
+          <Navbar.Brand
+            href="#"
+            onClick={handleGoHome}
+            className="fw-bold text-white fs-4 d-flex align-items-center gap-2 text-decoration-none"
+          >
+            {/* Thẻ ảnh Logo ở đây - Bạn thay link ảnh/path '/logo.png' thực tế vào src nhé */}
+            <img
+              src="/logo.png"
+              alt="Gốm Sứ Quyết Phương"
+              style={{ width: '45px', height: '45px', objectFit: 'contain' }}
+              onError={(e) => {
+                // Fallback icon nếu đường dẫn ảnh bị lỗi
+                e.target.style.display = 'none';
+              }}
+            />
+            <div>
+              <span className="d-block leading-tight">GỐM SỨ QUYẾT PHƯƠNG</span>
+              <span className="d-block text-warning fw-semibold" style={{ fontSize: '11px', letterSpacing: '1px', marginTop: '-2px' }}>
+                ĐỒ THỜ - ĐỒ PHONG THỦY - GỐM SỨ TÂM LINH
+              </span>
+            </div>
           </Navbar.Brand>
 
           {/* Search Bar */}
@@ -129,12 +146,11 @@ function Header({
         </Container>
       </Navbar>
 
-      {/* 3. Thanh Navigation Sub-Menu */}
+      {/* 3. Sub Navigation Bar */}
       <div className="bg-white border-bottom shadow-sm">
         <Container className="position-relative">
           <Nav className="gap-4 align-items-center justify-content-center justify-content-lg-start">
 
-            {/* NÚT TRANG CHỦ (ĐÃ ĐƯỢC CẬP NHẬT) */}
             <Nav.Link href="#" onClick={handleGoHome} className="fw-bold text-dark py-3">
               Trang chủ
             </Nav.Link>

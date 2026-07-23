@@ -7,7 +7,7 @@ function Header({
   setSelectedCategory,
   setSelectedProductId,
   totalCartCount,
-  setShowCart,
+  setIsCartPage,
   currentUser,
   onOpenAuth,
   onLogout,
@@ -21,6 +21,7 @@ function Header({
     setSelectedProductId(null);
     setIsAdminView(false);
     if (setIsUserPage) setIsUserPage(false);
+    if (setIsCartPage) setIsCartPage(false);
     setSelectedCategory('Tất cả');
     setSearchQuery('');
   };
@@ -29,6 +30,7 @@ function Header({
     setIsAdminView(false);
     setSelectedProductId(null);
     if (setIsUserPage) setIsUserPage(true);
+    if (setIsCartPage) setIsCartPage(false);
   };
 
   return (
@@ -110,7 +112,7 @@ function Header({
 
           {/* Giỏ hàng & Đăng nhập / Tài khoản */}
           <Nav className="ms-auto align-items-center gap-3">
-            <Button variant="outline-light" className="position-relative" onClick={() => setShowCart(true)}>
+            <Button variant="outline-light" className="position-relative" onClick={() => { if (setIsCartPage) setIsCartPage(true); setSelectedProductId(null); setIsAdminView(false); if (setIsUserPage) setIsUserPage(false); }}>
               🛒 Giỏ hàng
               {totalCartCount > 0 && (
                 <Badge bg="danger" className="position-absolute top-0 start-100 translate-middle rounded-pill">

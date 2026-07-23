@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Container, Row, Col, Card, Nav, Form, Button, InputGroup } from 'react-bootstrap';
+import { Container, Row, Col, Card, Nav, Form, Button, InputGroup, Modal } from 'react-bootstrap';
 
-function UserProfilePage({ currentUser, orders = [], onBackToHome }) {
+function UserProfilePage({ currentUser, orders = [], onBackToHome, onUpdateUser }) {
     // State quản lý tab đang được chọn ở Sidebar ('profile' | 'orders' | 'address')
     const [activeTab, setActiveTab] = useState('profile');
 
@@ -9,11 +9,61 @@ function UserProfilePage({ currentUser, orders = [], onBackToHome }) {
     const [setOrderTab] = useState('all');
 
     const [userInfo, setUserInfo] = useState({
-        username: currentUser?.username || currentUser?.email?.split('@')[0] || 'tuanvu2005a',
-        email: currentUser?.email || 'tranquyethnkttd@gmail.com',
-        phone: currentUser?.phone || '0913 767 574',
-        address: currentUser?.address || 'Hà Nội'
+        username: currentUser?.username || currentUser?.email?.split('@')[0] || '',
+        email: currentUser?.email || '',
+        phone: currentUser?.phone || '',
+        address: currentUser?.address || ''
     });
+
+    // State cho Modal cập nhật địa chỉ
+    const [showAddressModal, setShowAddressModal] = useState(false);
+    const [addressForm, setAddressForm] = useState({
+        username: '',
+        phone: '',
+        address: ''
+    });
+
+    const handleSaveProfile = (e) => {
+        e.preventDefault();
+        if (onUpdateUser) {
+            onUpdateUser({
+                ...currentUser,
+                username: userInfo.username,
+                email: userInfo.email,
+                phone: userInfo.phone
+            });
+        }
+        alert('Cập nhật hồ sơ tài khoản thành công!');
+    };
+
+    const handleOpenAddressModal = () => {
+        setAddressForm({
+            username: userInfo.username,
+            phone: userInfo.phone,
+            address: userInfo.address
+        });
+        setShowAddressModal(true);
+    };
+
+    const handleSaveAddress = (e) => {
+        e.preventDefault();
+        setUserInfo(prev => ({
+            ...prev,
+            username: addressForm.username,
+            phone: addressForm.phone,
+            address: addressForm.address
+        }));
+        if (onUpdateUser) {
+            onUpdateUser({
+                ...currentUser,
+                username: addressForm.username,
+                phone: addressForm.phone,
+                address: addressForm.address
+            });
+        }
+        setShowAddressModal(false);
+        alert('Cập nhật địa chỉ nhận hàng thành công!');
+    };
 
     return (
         <Container className="my-4">
@@ -86,11 +136,11 @@ function UserProfilePage({ currentUser, orders = [], onBackToHome }) {
                         <Card className="border-0 shadow-sm p-4">
                             <h5 className="fw-bold border-bottom pb-3 mb-4">Hồ Sơ Của Tôi</h5>
                             <p className="text-muted small">Quản lý thông tin hồ sơ để bảo mật tài khoản</p>
-                            <Form>
+                            <Form onSubmit={handleSaveProfile}>
                                 <Form.Group className="row mb-3">
                                     <Form.Label className="col-sm-3 col-form-label text-end fw-semibold">Tên đăng nhập</Form.Label>
                                     <div className="col-sm-9">
-                                        <Form.Control type="text" value={userInfo.username} readOnly plaintext className="fw-bold" />
+                                        <Form.Control type="text" value={userInfo.username} onChange={(e) => setUserInfo({ ...userInfo, username: e.target.value })} className="fw-bold" />
                                     </div>
                                 </Form.Group>
                                 <Form.Group className="row mb-3">
@@ -107,7 +157,7 @@ function UserProfilePage({ currentUser, orders = [], onBackToHome }) {
                                 </Form.Group>
                                 <div className="row mt-4">
                                     <div className="col-sm-9 offset-sm-3">
-                                        <Button variant="danger" className="px-4 fw-bold">Lưu Thay Đổi</Button>
+                                        <Button type="submit" variant="danger" className="px-4 fw-bold">Lưu Thay Đổi</Button>
                                     </div>
                                 </div>
                             </Form>
@@ -172,28 +222,78 @@ function UserProfilePage({ currentUser, orders = [], onBackToHome }) {
                         </Card>
                     )}
 
-                    {/* TAB 3: ĐỊA CHỈ GIAO HÀNG */}
+                     {/* TAB 3: ĐỊA CHỈ GIAO HÀNG */}
                     {activeTab === 'address' && (
                         <Card className="border-0 shadow-sm p-4">
                             <div className="d-flex justify-content-between align-items-center border-bottom pb-3 mb-4">
                                 <h5 className="fw-bold m-0">Địa Chỉ Của Tôi</h5>
-                                <Button variant="danger" size="sm" className="fw-bold">+ Thêm địa chỉ mới</Button>
+                                <Button variant="danger" size="sm" className="fw-bold" onClick={handleOpenAddressModal}>+ Thêm địa chỉ mới</Button>
                             </div>
                             <div className="p-3 border rounded mb-3 bg-light d-flex justify-content-between align-items-center">
                                 <div>
                                     <div className="d-flex align-items-center gap-2 mb-1">
-                                        <strong className="text-dark">{userInfo.username}</strong>
+                                        <strong className="text-dark">{userInfo.username || 'Chưa nhập tên'}</strong>
                                         <span className="text-muted">|</span>
-                                        <span className="text-muted">{userInfo.phone}</span>
+                                        <span className="text-muted">{userInfo.phone || 'Chưa có SĐT'}</span>
                                     </div>
-                                    <p className="text-muted small mb-0">{userInfo.address}</p>
+                                    <p className="text-muted small mb-0">{userInfo.address || 'Chưa cập nhật địa chỉ giao hàng'}</p>
                                 </div>
                                 <div>
-                                    <Button variant="link" className="text-primary p-0 me-2">Cập nhật</Button>
+                                    <Button variant="link" className="text-primary p-0 me-2 text-decoration-none" onClick={handleOpenAddressModal}>Cập nhật</Button>
                                 </div>
                             </div>
                         </Card>
                     )}
+
+                    {/* MODAL CẬP NHẬT ĐỊA CHỈ */}
+                    <Modal show={showAddressModal} onHide={() => setShowAddressModal(false)} centered>
+                        <Modal.Header closeButton>
+                            <Modal.Title className="fw-bold fs-5">Cập Nhật Địa Chỉ Nhận Hàng</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <Form onSubmit={handleSaveAddress}>
+                                <Form.Group className="mb-3">
+                                    <Form.Label className="fw-semibold">Họ và tên người nhận</Form.Label>
+                                    <Form.Control
+                                        type="text"
+                                        placeholder="Nhập họ tên người nhận hàng"
+                                        value={addressForm.username}
+                                        onChange={(e) => setAddressForm({ ...addressForm, username: e.target.value })}
+                                        required
+                                    />
+                                </Form.Group>
+                                <Form.Group className="mb-3">
+                                    <Form.Label className="fw-semibold">Số điện thoại</Form.Label>
+                                    <Form.Control
+                                        type="text"
+                                        placeholder="Nhập số điện thoại liên hệ"
+                                        value={addressForm.phone}
+                                        onChange={(e) => setAddressForm({ ...addressForm, phone: e.target.value })}
+                                        required
+                                    />
+                                </Form.Group>
+                                <Form.Group className="mb-3">
+                                    <Form.Label className="fw-semibold">Địa chỉ chi tiết</Form.Label>
+                                    <Form.Control
+                                        as="textarea"
+                                        rows={3}
+                                        placeholder="Nhập số nhà, tên đường, phường/xã, quận/huyện, tỉnh/thành phố"
+                                        value={addressForm.address}
+                                        onChange={(e) => setAddressForm({ ...addressForm, address: e.target.value })}
+                                        required
+                                    />
+                                </Form.Group>
+                                <div className="d-flex justify-content-end gap-2 mt-4">
+                                    <Button variant="secondary" onClick={() => setShowAddressModal(false)}>
+                                        Hủy
+                                    </Button>
+                                    <Button type="submit" variant="danger" className="fw-bold">
+                                        Lưu Địa Chỉ
+                                    </Button>
+                                </div>
+                            </Form>
+                        </Modal.Body>
+                    </Modal>
                 </Col>
             </Row>
         </Container>

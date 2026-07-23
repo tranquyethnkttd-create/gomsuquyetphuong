@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col, Card, Button, Table } from 'react-bootstrap';
-
 // Import các components con
 import Header from './components/Header';
 import Footer from './components/Footer';
 import ProductCard from './components/ProductCard';
 import ProductDetail from './components/ProductDetail';
-import CartDrawer from './components/CartDrawer';
+import CartPage from './components/CartPage';
 import AuthModal from './components/AuthModal';
 import UserProfilePage from './components/UserProfilePage'; // Trang User kiểu Shopee
 
@@ -20,7 +19,7 @@ function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('Tất cả');
   const [cart, setCart] = useState([]);
-  const [showCart, setShowCart] = useState(false);
+  const [isCartPage, setIsCartPage] = useState(false);
 
   // 🎯 Lấy user đã lưu trong localStorage khi vừa mở App
   const [currentUser, setCurrentUser] = useState(() => {
@@ -108,6 +107,7 @@ function App() {
     localStorage.removeItem("user"); // Clear session
     setIsAdminView(false);
     setIsUserPage(false);
+    setIsCartPage(false);
   };
 
   return (
@@ -119,13 +119,17 @@ function App() {
         setSelectedCategory={(cat) => {
           setSelectedCategory(cat);
           setIsUserPage(false);
+          setIsCartPage(false);
         }}
         setSelectedProductId={(id) => {
           setSelectedProductId(id);
           setIsUserPage(false);
+          if (id !== null) {
+            setIsCartPage(false);
+          }
         }}
         totalCartCount={totalCartCount}
-        setShowCart={setShowCart}
+        setIsCartPage={setIsCartPage}
         currentUser={currentUser}
         onOpenAuth={() => setShowAuthModal(true)}
         onLogout={handleLogout}
@@ -141,6 +145,23 @@ function App() {
             currentUser={currentUser}
             orders={cart}
             onBackToHome={() => setIsUserPage(false)}
+            onUpdateUser={(updatedUser) => {
+              setCurrentUser(updatedUser);
+              localStorage.setItem("user", JSON.stringify(updatedUser));
+            }}
+          />
+        ) : isCartPage ? (
+          <CartPage
+            cart={cart}
+            removeFromCart={removeFromCart}
+            updateCartQuantity={(id, newQty) => {
+              if (newQty < 1) return;
+              setCart(prevCart => prevCart.map(item =>
+                item.id === id ? { ...item, quantity: newQty } : item
+              ));
+            }}
+            setCart={setCart}
+            onBackToHome={() => setIsCartPage(false)}
           />
         ) : isAdminView && currentUser?.role === 'admin' ? (
           /* 2. TRANG ADMIN */
@@ -266,14 +287,7 @@ function App() {
         )}
       </Container>
 
-      {/* Cart Drawer */}
-      <CartDrawer
-        showCart={showCart}
-        setShowCart={setShowCart}
-        cart={cart}
-        removeFromCart={removeFromCart}
-        setCart={setCart}
-      />
+
 
       {/* Modal Đăng nhập / Đăng ký */}
       <AuthModal

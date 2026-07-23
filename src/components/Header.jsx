@@ -42,17 +42,17 @@ function Header({
       {/* 2. Main Navigation Bar */}
       <Navbar style={{ backgroundColor: '#5e2828ff' }} expand="lg" className="py-3 border-bottom position-relative">
         <Container>
-
+          
           {/* LOGO VÀ TÊN THƯƠNG HIỆU */}
-          <Navbar.Brand
-            href="#"
-            onClick={handleGoHome}
+          <Navbar.Brand 
+            href="#" 
+            onClick={handleGoHome} 
             className="fw-bold text-white fs-4 d-flex align-items-center gap-2 text-decoration-none"
           >
             {/* Thẻ ảnh Logo ở đây - Bạn thay link ảnh/path '/logo.png' thực tế vào src nhé */}
-            <img
-              src="/logo.png"
-              alt="Gốm Sứ Quyết Phương"
+            <img 
+              src="/logo.png" 
+              alt="Gốm Sứ Quyết Phương" 
               style={{ width: '45px', height: '45px', objectFit: 'contain' }}
               onError={(e) => {
                 // Fallback icon nếu đường dẫn ảnh bị lỗi
@@ -150,7 +150,7 @@ function Header({
       <div className="bg-white border-bottom shadow-sm">
         <Container className="position-relative">
           <Nav className="gap-4 align-items-center justify-content-center justify-content-lg-start">
-
+            
             <Nav.Link href="#" onClick={handleGoHome} className="fw-bold text-dark py-3">
               Trang chủ
             </Nav.Link>

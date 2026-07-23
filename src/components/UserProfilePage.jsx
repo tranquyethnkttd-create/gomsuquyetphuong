@@ -6,7 +6,7 @@ function UserProfilePage({ currentUser, orders = [], onBackToHome }) {
     const [activeTab, setActiveTab] = useState('profile');
 
     // State quản lý tab lọc đơn hàng ở bên phải ('all', 'pay', 'ship', v.v.)
-    const [orderTab, setOrderTab] = useState('all');
+    const [setOrderTab] = useState('all');
 
     const [userInfo, setUserInfo] = useState({
         username: currentUser?.username || currentUser?.email?.split('@')[0] || 'tuanvu2005a',

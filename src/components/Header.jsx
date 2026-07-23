@@ -42,17 +42,17 @@ function Header({
       {/* 2. Main Navigation Bar */}
       <Navbar style={{ backgroundColor: '#5e2828ff' }} expand="lg" className="py-3 border-bottom position-relative">
         <Container>
-          
+
           {/* LOGO VÀ TÊN THƯƠNG HIỆU */}
-          <Navbar.Brand 
-            href="#" 
-            onClick={handleGoHome} 
+          <Navbar.Brand
+            href="#"
+            onClick={handleGoHome}
             className="fw-bold text-white fs-4 d-flex align-items-center gap-2 text-decoration-none"
           >
             {/* Thẻ ảnh Logo ở đây - Bạn thay link ảnh/path '/logo.png' thực tế vào src nhé */}
-            <img 
-              src="/logo.png" 
-              alt="Gốm Sứ Quyết Phương" 
+            <img
+              src="/logo.png"
+              alt="Gốm Sứ Quyết Phương"
               style={{ width: '45px', height: '45px', objectFit: 'contain' }}
               onError={(e) => {
                 // Fallback icon nếu đường dẫn ảnh bị lỗi
@@ -150,7 +150,7 @@ function Header({
       <div className="bg-white border-bottom shadow-sm">
         <Container className="position-relative">
           <Nav className="gap-4 align-items-center justify-content-center justify-content-lg-start">
-            
+
             <Nav.Link href="#" onClick={handleGoHome} className="fw-bold text-dark py-3">
               Trang chủ
             </Nav.Link>
@@ -175,44 +175,85 @@ function Header({
                     <Col md={3}>
                       <h6 className="text-danger fw-bold border-bottom pb-2 mb-3">ĐỒ THỜ CÚNG</h6>
                       <ul className="list-unstyled d-flex flex-column gap-2 small mb-0">
-                        <li><a href="#" className="text-dark text-decoration-none" onClick={() => { setSelectedCategory('Đồ thờ cúng'); setShowMegaMenu(false); if (setIsUserPage) setIsUserPage(false); }}>Bộ đồ ăn / Bộ thờ</a></li>
-                        <li><a href="#" className="text-dark text-decoration-none" onClick={() => { setSelectedCategory('Đồ thờ cúng'); setShowMegaMenu(false); if (setIsUserPage) setIsUserPage(false); }}>Chén, Chén chấm</a></li>
-                        <li><a href="#" className="text-dark text-decoration-none" onClick={() => { setSelectedCategory('Đồ thờ cúng'); setShowMegaMenu(false); if (setIsUserPage) setIsUserPage(false); }}>Lộc bình, Bát hương</a></li>
-                        <li><a href="#" className="text-dark text-decoration-none" onClick={() => { setSelectedCategory('Đồ thờ cúng'); setShowMegaMenu(false); if (setIsUserPage) setIsUserPage(false); }}>Mâm bồng, Kỷ nước</a></li>
+                        <li>
+                          <button
+                            type="button"
+                            className="btn btn-link text-dark text-decoration-none p-0 text-start border-0"
+                            onClick={() => { setSelectedCategory('Đồ thờ cúng'); setShowMegaMenu(false); if (setIsUserPage) setIsUserPage(false); }}
+                          >
+                            Bộ đồ ăn / Bộ thờ
+                          </button>
+                        </li>
+                        <li>
+                          <button
+                            type="button"
+                            className="btn btn-link text-dark text-decoration-none p-0 text-start border-0"
+                            onClick={() => { setSelectedCategory('Đồ thờ cúng'); setShowMegaMenu(false); if (setIsUserPage) setIsUserPage(false); }}
+                          >
+                            Chén, Chén chấm
+                          </button>
+                        </li>
+                        <li>
+                          <button
+                            type="button"
+                            className="btn btn-link text-dark text-decoration-none p-0 text-start border-0"
+                            onClick={() => { setSelectedCategory('Đồ thờ cúng'); setShowMegaMenu(false); if (setIsUserPage) setIsUserPage(false); }}
+                          >
+                            Lộc bình, Bát hương
+                          </button>
+                        </li>
+                        <li>
+                          <button
+                            type="button"
+                            className="btn btn-link text-dark text-decoration-none p-0 text-start border-0"
+                            onClick={() => { setSelectedCategory('Đồ thờ cúng'); setShowMegaMenu(false); if (setIsUserPage) setIsUserPage(false); }}
+                          >
+                            Mâm bồng, Kỷ nước
+                          </button>
+                        </li>
                       </ul>
                     </Col>
 
                     <Col md={3}>
                       <h6 className="text-danger fw-bold border-bottom pb-2 mb-3">GỐM SỨ GIA DỤNG & PHONG THỦY</h6>
                       <ul className="list-unstyled d-flex flex-column gap-2 small mb-0">
-                        <li><a href="#" className="text-dark text-decoration-none" onClick={() => { setSelectedCategory('Chum rượu'); setShowMegaMenu(false); if (setIsUserPage) setIsUserPage(false); }}>🍶 Chum Rượu Bát Tràng</a></li>
-                        <li><a href="#" className="text-dark text-decoration-none" onClick={() => { setSelectedCategory('Chĩnh gạo'); setShowMegaMenu(false); if (setIsUserPage) setIsUserPage(false); }}>🌾 Chĩnh Gạo Tài Lộc</a></li>
-                        <li><a href="#" className="text-dark text-decoration-none" onClick={() => { setSelectedCategory('Chậu cảnh'); setShowMegaMenu(false); if (setIsUserPage) setIsUserPage(false); }}>🪴 Chậu Cảnh Nghệ Thuật</a></li>
-                        <li><a href="#" className="text-dark text-decoration-none" onClick={() => { setSelectedCategory('Đồ phong thủy'); setShowMegaMenu(false); if (setIsUserPage) setIsUserPage(false); }}>Tượng Linh Vật & Bình Hoa</a></li>
+                        <li>
+                          <button
+                            type="button"
+                            className="btn btn-link text-dark text-decoration-none p-0 text-start border-0"
+                            onClick={() => { setSelectedCategory('Chum rượu'); setShowMegaMenu(false); if (setIsUserPage) setIsUserPage(false); }}
+                          >
+                            🍶 Chum Rượu Bát Tràng
+                          </button>
+                        </li>
+                        <li>
+                          <button
+                            type="button"
+                            className="btn btn-link text-dark text-decoration-none p-0 text-start border-0"
+                            onClick={() => { setSelectedCategory('Chĩnh gạo'); setShowMegaMenu(false); if (setIsUserPage) setIsUserPage(false); }}
+                          >
+                            🌾 Chĩnh Gạo Tài Lộc
+                          </button>
+                        </li>
+                        <li>
+                          <button
+                            type="button"
+                            className="btn btn-link text-dark text-decoration-none p-0 text-start border-0"
+                            onClick={() => { setSelectedCategory('Chậu cảnh'); setShowMegaMenu(false); if (setIsUserPage) setIsUserPage(false); }}
+                          >
+                            🪴 Chậu Cảnh Nghệ Thuật
+                          </button>
+                        </li>
+                        <li>
+                          <button
+                            type="button"
+                            className="btn btn-link text-dark text-decoration-none p-0 text-start border-0"
+                            onClick={() => { setSelectedCategory('Đồ phong thủy'); setShowMegaMenu(false); if (setIsUserPage) setIsUserPage(false); }}
+                          >
+                            Tượng Linh Vật & Bình Hoa
+                          </button>
+                        </li>
                       </ul>
-                    </Col>
-
-                    <Col md={6} className="d-flex gap-3 justify-content-end">
-                      <div className="border rounded overflow-hidden position-relative" style={{ width: '48%', height: '150px' }}>
-                        <img
-                          src="https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=400"
-                          alt="New Arrivals"
-                          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                        />
-                        <div className="position-absolute bottom-0 start-0 w-100 bg-dark bg-opacity-50 text-white p-1 text-center small fw-bold">
-                          Sản Phẩm Mới Nhất
-                        </div>
-                      </div>
-                      <div className="border rounded overflow-hidden position-relative" style={{ width: '48%', height: '150px' }}>
-                        <img
-                          src="https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?w=400"
-                          alt="Hot Items"
-                          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                        />
-                        <div className="position-absolute bottom-0 start-0 w-100 bg-dark bg-opacity-50 text-white p-1 text-center small fw-bold">
-                          Đồ Thờ Bát Tràng
-                        </div>
-                      </div>
                     </Col>
                   </Row>
                 </div>

@@ -49,16 +49,29 @@ function Header({
             onClick={handleGoHome}
             className="fw-bold text-white fs-4 d-flex align-items-center gap-2 text-decoration-none"
           >
-            {/* Thẻ ảnh Logo ở đây - Bạn thay link ảnh/path '/logo.png' thực tế vào src nhé */}
-            <img
-              src="/logo.png"
-              alt="Gốm Sứ Quyết Phương"
-              style={{ width: '45px', height: '45px', objectFit: 'contain' }}
-              onError={(e) => {
-                // Fallback icon nếu đường dẫn ảnh bị lỗi
-                e.target.style.display = 'none';
-              }}
-            />
+            {/* Biểu tượng Bình Gốm Phong Thủy thuần SVG */}
+            <svg
+              width="42"
+              height="42"
+              viewBox="0 0 64 64"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              style={{ filter: 'drop-shadow(0px 2px 4px rgba(0,0,0,0.3))' }}
+            >
+              {/* Vòng tròn viền vàng */}
+              <circle cx="32" cy="32" r="30" fill="#8B0000" stroke="#FFD700" strokeWidth="2" />
+              {/* Miệng bình gốm */}
+              <ellipse cx="32" cy="18" rx="8" ry="3" fill="#FFD700" />
+              {/* Cổ bình */}
+              <path d="M25 19 L26 25 L38 25 L39 19 Z" fill="#FFD700" />
+              {/* Thân bình tài lộc */}
+              <path d="M26 25 C18 30 16 42 22 48 C26 52 38 52 42 48 C48 42 46 30 38 25 Z" fill="#FFD700" />
+              {/* Họa tiết đai bình */}
+              <path d="M20 36 Q32 40 44 36" stroke="#8B0000" strokeWidth="2" fill="none" />
+              {/* Chân đế */}
+              <rect x="26" y="49" width="12" height="3" rx="1" fill="#DAA520" />
+            </svg>
+
             <div>
               <span className="d-block leading-tight">GỐM SỨ QUYẾT PHƯƠNG</span>
               <span className="d-block text-warning fw-semibold" style={{ fontSize: '11px', letterSpacing: '1px', marginTop: '-2px' }}>

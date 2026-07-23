@@ -231,6 +231,65 @@
             "price": "450.000 đ",
             "image": "https://images.unsplash.com/photo-1485955900006-10f4d324d411?w=500",
             "description": "Chậu trồng cây cảnh, bonsai bằng gốm nung nhiệt độ cao durable và tinh xảo."
+        },
+        {
+            "id": "BHL-01",
+            "name": "Bình Hút Lộc Vẽ Vàng 24K Mã Đáo Thành Công (Đỏ Hoàng Gia)",
+            "category": "Đồ phong thủy",
+            "subCategory": "Bình hút tài lộc",
+            "price": 5400000,
+            "originalPrice": 6500000,
+            "height": "38cm - 40cm",
+            "material": "Gốm sứ Bát Tràng cao cấp, vẽ vàng 24K",
+            "color": "Đỏ Son Hoàng Gia",
+            "image": "hutloc7.jpg",
+            "images": [
+                "hutloc7.jpg"
+            ],
+            "status": "Còn hàng",
+            "meaning": "Bình hút lộc 'Mã Đáo Thành Công' mang tông màu đỏ son rực rỡ, tượng trưng cho hành Hỏa, sinh khí và may mắn đỉnh cao. Bát Mã (8 chú ngựa) phi nước đại thể hiện sức mạnh đoàn kết và sự bứt phá.",
+            "description": "Sản phẩm được chế tác thủ công bởi nghệ nhân Bát Tràng, nét vẽ vàng 24K sắc xảo trên nền men đỏ hoàng gia sang trọng."
+        },
+        {
+            "id": "BHL-02",
+            "name": "Bình Hút Lộc Vẽ Vàng 24K Thuận Buồm Xuôi Gió & Mã Đáo Thành Công (Ngũ Sắc Cổ Điển)",
+            "category": "Đồ phong thủy",
+            "subCategory": "Bình hút tài lộc",
+            "price": 5400000,
+            "originalPrice": 6500000,
+            "height": "33cm - 35cm",
+            "material": "Gốm sứ Bát Tràng cao cấp, vẽ vàng 24K",
+            "color": "Ngũ Sắc / Men Lam Cổ",
+            "image": "hutloc.jpg",
+            "images": [
+                "hutloc.jpg",
+                "hutloc1.jpg",
+                "hutloc2.jpg",
+                "hutloc3.jpg"
+            ],
+            "status": "Còn hàng",
+            "meaning": "Kết hợp 2 mặt họa tiết 'Thuận Buồm Xuôi Gió' và 'Mã Đáo Thành Công' kèm 4 ô chữ thư pháp 'Thuận Buồm Xuôi Gió' & 'Vạn Sự Như Ý'. Mang lại sự hanh thông, công danh bền vững.",
+            "description": "Bình hút lộc đa chiều góc nhìn, xoay mặt nào cũng mang ý nghĩa cát tường. Men ngũ sắc Bát Tràng đắp nổi vẽ vàng 24K cao cấp."
+        },
+        {
+            "id": "BHL-03",
+            "name": "Bình Hút Lộc Vẽ Vàng 24K Thuận Buồm Xuôi Gió & Mã Đáo (Đỏ Mạ Vàng Sang Trọng)",
+            "category": "Đồ phong thủy",
+            "subCategory": "Bình hút tài lộc",
+            "price": 5400000,
+            "originalPrice": 6500000,
+            "height": "33cm - 35cm",
+            "material": "Gốm sứ Bát Tràng cao cấp, vẽ vàng 24K",
+            "color": "Đỏ Nổi Bật / Men Lam Thần",
+            "image": "hutloc4.jpg",
+            "images": [
+                "hutloc4.jpg",
+                "hutloc5.jpg",
+                "hutloc6.jpg"
+            ],
+            "status": "Còn hàng",
+            "meaning": "Sự kết hợp giữa gam màu đỏ may mắn và lòng thuyền xanh cùng chi tiết dát vàng 24K. Chiêu tài kích lộc mạnh mẽ, biểu tượng cho việc chở tài lộc về nhà.",
+            "description": "Thân bình tròn đặn, miệng loe cổ thắt - chuẩn dáng hút và giữ tài lộc theo phong thủy Bát Tràng."
         }
     ]
 }

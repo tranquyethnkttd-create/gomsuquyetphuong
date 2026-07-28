@@ -1,295 +1,341 @@
 {
-    "products": [
+  "products": [
+    {
+      "id": "DT001",
+      "name": "Bộ Đồ Thờ Gốm Sứ Men Lam Cổ Song Long Chầu Nguyệt (Đầy Đủ 35 Món)",
+      "category": "Đồ thờ cúng",
+      "price": 18500000,
+      "image": "/images/dotho8.jpg",
+      "description": "Bộ đồ thờ men lam vẽ tay cao cấp với họa tiết Song Long Chầu Nguyệt đỉnh cao. Thích hợp cho gian thờ họ, biệt thự, hoặc bàn thờ gia tiên kích thước lớn (trên 1m97).",
+      "featured": true,
+      "inStock": true,
+      "details": {
+        "material": "Gốm sứ Bát Tràng cao cấp",
+        "craftsmanship": "Vẽ tay thủ công, men lam truyền thống",
+        "suitableFor": "Bàn thờ Gia tiên, Nhà thờ họ (Dài > 1m97)"
+      },
+      "itemsIncluded": [
+        "1 Đỉnh thất bảo / Lư hương gốm",
+        "2 Hạc thờ bằng gốm sứ",
+        "3 Bát hương (1 lớn, 2 nhỏ)",
+        "2 Bình hoa / Lộc bình cỡ đại",
+        "2 Mâm bồng (Đĩa hoa quả)",
+        "2 Đèn dầu gốm sứ",
+        "1 Kỷ ngai 5 chén thờ",
+        "1 Bộ ấm trà cúng",
+        "2 Bộ bát cúng (10 bát)",
+        "3 Choé thờ (Muối - Gạo - Nước)",
+        "1 Ống hương"
+      ]
+    },
+    {
+      "id": "DT002",
+      "name": "Bộ Đồ Thờ Men Rạn Hoa Sen Tối Giản Cho Căn Hộ Chung Cư",
+      "category": "Đồ thờ cúng",
+      "price": 3800000,
+      "image": "/images/dotho.jpg",
+      "description": "Thiết kế nhỏ gọn, tinh tế với họa tiết Hoa Sen chần men rạn cổ. Sự lựa chọn hoàn hảo cho không gian thờ hiện đại, bàn thờ treo hoặc bàn thờ chung cư.",
+      "featured": false,
+      "inStock": true,
+      "details": {
+        "material": "Gốm sứ men rạn cổ Bát Tràng",
+        "craftsmanship": "Họa tiết Hoa Sen vẽ tay",
+        "suitableFor": "Bàn thờ Căn hộ, Chung cư, Bàn thờ treo (Rộng 81cm - 1m07)"
+      },
+      "itemsIncluded": [
+        "1 Bát hương men rạn vẽ sen",
+        "2 Lọ hoa đắp nổi / vẽ sen",
+        "1 Mâm bồng",
+        "1 Kỷ ngai 3 chén",
+        "2 Choé thờ nhỏ",
+        "1 Ống cắm hương"
+      ]
+    },
+    {
+      "id": "DT003",
+      "name": "Bộ Đồ Thờ Men Rạn Cổ Họa Tiết Hoa Sen Tam Bát Hương",
+      "category": "Đồ thờ cúng",
+      "price": 8900000,
+      "image": "/images/dotho2.jpg",
+      "description": "Bộ đồ thờ 3 bát hương men rạn giả cổ sang trọng. Họa tiết Hoa Sen thanh cao mang lại sự thanh tịnh, bình an cho gia đạo.",
+      "featured": true,
+      "inStock": true,
+      "details": {
+        "material": "Gốm sứ men rạn đắp nổi Bát Tràng",
+        "craftsmanship": "Nung nhiệt độ cao 1300°C",
+        "suitableFor": "Bàn thờ Gia tiên kích thước 1m53 - 1m75"
+      },
+      "itemsIncluded": [
+        "3 Bát hương men rạn cổ",
+        "2 Lọ hoa dáng củ tỏi",
+        "3 Mâm bồng",
+        "1 Kỷ ngai 5 chén",
+        "3 Choé thờ",
+        "1 Bộ ấm chén cúng",
+        "2 Đèn dầu giả cổ",
+        "2 Cặp bát cúng",
+        "1 Ống hương",
+        "2 Cốc nước cúng"
+      ]
+    },
+    {
+      "id": "DT004",
+      "name": "Bộ Đồ Thờ Phật Giáo Men Rạn Hoa Sen Trang Nghiêm",
+      "category": "Gốm sứ tâm linh",
+      "price": 9500000,
+      "image": "/images/dotho3.jpg",
+      "description": "Chuyên dùng cho không gian thờ Phật hoặc Gia tiên kết hợp thờ Phật. Nước men rạn cổ kính kết hợp hoa văn Sen tịnh độ mang lại không khí trang nghiêm, ấm cúng.",
+      "featured": false,
+      "inStock": true,
+      "details": {
+        "material": "Gốm sứ Bát Tràng tráng men rạn",
+        "craftsmanship": "Họa tiết vẽ tay thủ công 100%",
+        "suitableFor": "Bàn thờ Phật, Gian thờ Thiền, Bàn thờ Gia tiên"
+      },
+      "itemsIncluded": [
+        "3 Bát hương men rạn họa tiết sen",
+        "2 Bình hoa dáng cao",
+        "3 Mâm bồng dâng lễ",
+        "1 Kỷ ngai 5 chén",
+        "3 Choé cúng",
+        "1 Bộ trà cúng",
+        "2 Đèn dầu cúng Phật",
+        "2 Cốc nước thờ thanh tịnh",
+        "1 Ống cắm hương"
+      ]
+    },
+    {
+      "id": "DT005",
+      "name": "Bộ Đồ Thờ Men Lam Cổ Rồng Chầu Bàn Thờ Tủ Thờ Gỗ Cổ",
+      "category": "Đồ thờ cúng",
+      "price": 12500000,
+      "image": "/images/dotho4.jpg",
+      "description": "Họa tiết Rồng thiêng vẽ men lam truyền thống trên nền gốm rạn cổ. Thiết kế uy nghi, đậm chất tâm linh Việt Nam, rất hợp với các mẫu bàn thờ gỗ gụ, gỗ hương đục đẽo cầu kỳ.",
+      "featured": true,
+      "inStock": true,
+      "details": {
+        "material": "Gốm sứ Bát Tràng men lam rạn",
+        "craftsmanship": "Rồng chầu mặt nguyệt vẽ tay tỉ mỉ",
+        "suitableFor": "Tủ thờ truyền thống, Án thờ đục chạm (Kích thước > 1m75)"
+      },
+      "itemsIncluded": [
+        "3 Bát hương Rồng chầu",
+        "2 Lọ hoa Rồng men lam",
+        "2 Mâm bồng lớn",
+        "1 Kỷ ngai 5 chén Rồng",
+        "3 Choé thờ",
+        "1 Nậm rượu",
+        "1 Bộ ấm chén cúng",
+        "1 Đèn dầu gốm",
+        "1 Ống cắm hương",
+        "1 Bộ bát cúng"
+      ]
+    },
+    {
+      "id": "DT006",
+      "name": "Bộ Đồ Thờ Gia Tiên Men Lam Rồng Phượng Chuẩn Phong Thủy",
+      "category": "Đồ thờ cúng",
+      "price": 11800000,
+      "image": "/images/dotho5.jpg",
+      "description": "Sự kết hợp giữa men lam truyền thống và chữ Phúc kim mạ vàng phía sau. Phù hợp cho các không gian thờ tự sang trọng, đẳng cấp gia tăng tài lộc và vượng khí.",
+      "featured": false,
+      "inStock": true,
+      "details": {
+        "material": "Gốm sứ cao cấp Bát Tràng",
+        "craftsmanship": "Men lam vẽ tay truyền thống",
+        "suitableFor": "Bàn thờ Gia tiên hiện đại & cổ điển (1m75 - 1m97)"
+      },
+      "itemsIncluded": [
+        "3 Bát hương Rồng Phượng",
+        "2 Lọ hoa dáng Lộc bình",
+        "2 Mâm bồng đựng quả",
+        "1 Kỷ ngai 5 chén",
+        "3 Choé thờ",
+        "1 Nậm rượu",
+        "1 Bộ chén trà cúng",
+        "1 Đèn dầu gốm sứ",
+        "2 Lọ hoa tiểu phụ",
+        "1 Ống hương"
+      ]
+    },
+    {
+      "id": "DT007",
+      "name": "Bộ Đồ Thờ Men Rạn Cổ Họa Tiết Hoa Sen Chữ Phúc",
+      "category": "Đồ thờ cúng",
+      "price": 8500000,
+      "image": "/images/dotho6.jpg",
+      "description": "Sự hài hòa giữa nét trầm mặc của men rạn cổ và nét thanh thoát của hoa văn Hoa Sen. Tạo cảm giác vô cùng ấm cúng và tôn nghiêm cho không gian thờ tự.",
+      "featured": false,
+      "inStock": true,
+      "details": {
+        "material": "Gốm sứ men rạn truyền thống",
+        "craftsmanship": "Chế tác thủ công Bát Tràng",
+        "suitableFor": "Bàn thờ đứng, Gian thờ chung cư cao cấp"
+      },
+      "itemsIncluded": [
+        "3 Bát hương họa tiết Sen",
+        "2 Lọ hoa dáng cao",
+        "3 Mâm bồng tròn",
+        "1 Kỷ ngai 5 chén",
+        "3 Choé cúng",
+        "2 Đèn dầu gốm",
+        "2 Cốc nước thờ",
+        "3 Bát cúng có nắp",
+        "1 Ống cắm hương"
+      ]
+    },
+    {
+      "id": "DT008",
+      "name": "Bộ Đồ Thờ Men Rạn Cổ Lửa Âm Dương Song Long Bát Hương",
+      "category": "Đồ phong thủy",
+      "price": 10200000,
+      "image": "/images/dotho7.jpg",
+      "description": "Họa tiết Song Long và Bát Quái/Thái Cực mang năng lượng phong thủy mạnh mẽ, xua đuổi tà khí, bảo vệ sự yên bình cho gia đạo.",
+      "featured": false,
+      "inStock": true,
+      "details": {
+        "material": "Gốm sứ Bát Tràng tráng men rạn cổ",
+        "craftsmanship": "Vẽ tay họa tiết Thái Cực & Rồng",
+        "suitableFor": "Bàn thờ Thần Linh, Bàn thờ Gia tiên, Nhà từ đường"
+      },
+      "itemsIncluded": [
+        "3 Bát hương họa tiết Thái Cực - Rồng",
+        "2 Lọ hoa dáng Lộc bình",
+        "2 Mâm bồng rộng",
+        "1 Kỷ ngai 5 chén",
+        "3 Choé cúng",
+        "2 Nậm rượu dáng hồ lô",
+        "1 Đèn dầu gốm sứ phong thủy"
+      ]
+    },
+    {
+      "id": "101",
+      "name": "Chum Rượu Sành Bát Tràng Hạ Thổ 20 Lít",
+      "category": "Chum rượu",
+      "price": 850000,
+      "image": "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=500",
+      "description": "Chum sành không tráng men giúp khử độc tố Aldehyde, thích hợp hạ thổ rượu."
+    },
+    {
+      "id": "102",
+      "name": "Chĩnh Gạo Sành Phong Thủy Tài Lộc 15kg",
+      "category": "Chĩnh gạo",
+      "price": 680000,
+      "image": "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=500",
+      "description": "Chĩnh gạo tráng men vẽ chữ Tài Lộc, giữ gạo chống ẩm mốc và mang lại may mắn."
+    },
+    {
+      "id": "103",
+      "name": "Chậu Cảnh Gốm Sứ Đất Nung Khảm Hoa Văn Bát Tràng",
+      "category": "Chậu cảnh",
+      "price": 450000,
+      "image": "https://images.unsplash.com/photo-1485955900006-10f4d324d411?w=500",
+      "description": "Chậu trồng cây cảnh, bonsai bằng gốm nung nhiệt độ cao durable và tinh xảo."
+    },
+    {
+      "id": "BHL-01",
+      "name": "Bình Hút Lộc Vẽ Vàng 24K Mã Đáo Thành Công (Đỏ Hoàng Gia)",
+      "category": "Đồ phong thủy",
+      "subCategory": "Bình hút tài lộc",
+      "price": 5400000,
+      "originalPrice": 6500000,
+      "height": "38cm - 40cm",
+      "material": "Gốm sứ Bát Tràng cao cấp, vẽ vàng 24K",
+      "color": "Đỏ Son Hoàng Gia",
+      "image": "/images/hutloc7.jpg",
+      "images": [
+        "/images/hutloc7.jpg"
+      ],
+      "status": "Còn hàng",
+      "meaning": "Bình hút lộc 'Mã Đáo Thành Công' mang tông màu đỏ son rực rỡ, tượng trưng cho hành Hỏa, sinh khí và may mắn đỉnh cao. Bát Mã (8 chú ngựa) phi nước đại thể hiện sức mạnh đoàn kết và sự bứt phá.",
+      "description": "Sản phẩm được chế tác thủ công bởi nghệ nhân Bát Tràng, nét vẽ vàng 24K sắc xảo trên nền men đỏ hoàng gia sang trọng."
+    },
+    {
+      "id": "BHL-02",
+      "name": "Bình Hút Lộc Vẽ Vàng 24K Thuận Buồm Xuôi Gió & Mã Đáo Thành Công (Ngũ Sắc Cổ Điển)",
+      "category": "Đồ phong thủy",
+      "subCategory": "Bình hút tài lộc",
+      "price": 5400000,
+      "originalPrice": 6500000,
+      "height": "33cm - 35cm",
+      "material": "Gốm sứ Bát Tràng cao cấp, vẽ vàng 24K",
+      "color": "Ngũ Sắc / Men Lam Cổ",
+      "image": "/images/hutloc.jpg",
+      "images": [
+        "/images/hutloc.jpg",
+        "/images/hutloc1.jpg",
+        "/images/hutloc2.jpg",
+        "/images/hutloc3.jpg"
+      ],
+      "status": "Còn hàng",
+      "meaning": "Kết hợp 2 mặt họa tiết 'Thuận Buồm Xuôi Gió' và 'Mã Đáo Thành Công' kèm 4 ô chữ thư pháp 'Thuận Buồm Xuôi Gió' & 'Vạn Sự Như Ý'. Mang lại sự hanh thông, công danh bền vững.",
+      "description": "Bình hút lộc đa chiều góc nhìn, xoay mặt nào cũng mang ý nghĩa cát tường. Men ngũ sắc Bát Tràng đắp nổi vẽ vàng 24K cao cấp."
+    },
+    {
+      "id": "BHL-03",
+      "name": "Bình Hút Lộc Vẽ Vàng 24K Thuận Buồm Xuôi Gió & Mã Đáo (Đỏ Mạ Vàng Sang Trọng)",
+      "category": "Đồ phong thủy",
+      "subCategory": "Bình hút tài lộc",
+      "price": 5400000,
+      "originalPrice": 6500000,
+      "height": "33cm - 35cm",
+      "material": "Gốm sứ Bát Tràng cao cấp, vẽ vàng 24K",
+      "color": "Đỏ Nổi Bật / Men Lam Thần",
+      "image": "/images/hutloc4.jpg",
+      "images": [
+        "/images/hutloc4.jpg",
+        "/images/hutloc5.jpg",
+        "/images/hutloc6.jpg"
+      ],
+      "status": "Còn hàng",
+      "meaning": "Sự kết hợp giữa gam màu đỏ may mắn và lòng thuyền xanh cùng chi tiết dát vàng 24K. Chiêu tài kích lộc mạnh mẽ, biểu tượng cho việc chở tài lộc về nhà.",
+      "description": "Thân bình tròn đặn, miệng loe cổ thắt - chuẩn dáng hút và giữ tài lộc theo phong thủy Bát Tràng."
+    }
+  ],
+  "orders": [
+    {
+      "id": "NDGEY75nsrw"
+    },
+    {
+      "id": "dOID_Az0b0E",
+      "userId": "guest",
+      "customerName": "Dương Khánh Ly",
+      "phone": "0333212006",
+      "address": "Trường Đạu Học FPT",
+      "items": [
         {
-            "id": "DT001",
-            "name": "Bộ Đồ Thờ Gốm Sứ Men Lam Cổ Song Long Chầu Nguyệt (Đầy Đủ 35 Món)",
-            "category": "Đồ thờ cúng",
-            "price": 18500000,
-            "image": "/images/dotho8.jpg",
-            "description": "Bộ đồ thờ men lam vẽ tay cao cấp với họa tiết Song Long Chầu Nguyệt đỉnh cao. Thích hợp cho gian thờ họ, biệt thự, hoặc bàn thờ gia tiên kích thước lớn (trên 1m97).",
-            "featured": true,
-            "inStock": true,
-            "details": {
-                "material": "Gốm sứ Bát Tràng cao cấp",
-                "craftsmanship": "Vẽ tay thủ công, men lam truyền thống",
-                "suitableFor": "Bàn thờ Gia tiên, Nhà thờ họ (Dài > 1m97)"
-            },
-            "itemsIncluded": [
-                "1 Đỉnh thất bảo / Lư hương gốm",
-                "2 Hạc thờ bằng gốm sứ",
-                "3 Bát hương (1 lớn, 2 nhỏ)",
-                "2 Bình hoa / Lộc bình cỡ đại",
-                "2 Mâm bồng (Đĩa hoa quả)",
-                "2 Đèn dầu gốm sứ",
-                "1 Kỷ ngai 5 chén thờ",
-                "1 Bộ ấm trà cúng",
-                "2 Bộ bát cúng (10 bát)",
-                "3 Choé thờ (Muối - Gạo - Nước)",
-                "1 Ống hương"
-            ]
-        },
-        {
-            "id": "DT002",
-            "name": "Bộ Đồ Thờ Men Rạn Hoa Sen Tối Giản Cho Căn Hộ Chung Cư",
-            "category": "Đồ thờ cúng",
-            "price": 3800000,
-            "image": "/images/dotho.jpg",
-            "description": "Thiết kế nhỏ gọn, tinh tế với họa tiết Hoa Sen chần men rạn cổ. Sự lựa chọn hoàn hảo cho không gian thờ hiện đại, bàn thờ treo hoặc bàn thờ chung cư.",
-            "featured": false,
-            "inStock": true,
-            "details": {
-                "material": "Gốm sứ men rạn cổ Bát Tràng",
-                "craftsmanship": "Họa tiết Hoa Sen vẽ tay",
-                "suitableFor": "Bàn thờ Căn hộ, Chung cư, Bàn thờ treo (Rộng 81cm - 1m07)"
-            },
-            "itemsIncluded": [
-                "1 Bát hương men rạn vẽ sen",
-                "2 Lọ hoa đắp nổi / vẽ sen",
-                "1 Mâm bồng",
-                "1 Kỷ ngai 3 chén",
-                "2 Choé thờ nhỏ",
-                "1 Ống cắm hương"
-            ]
-        },
-        {
-            "id": "DT003",
-            "name": "Bộ Đồ Thờ Men Rạn Cổ Họa Tiết Hoa Sen Tam Bát Hương",
-            "category": "Đồ thờ cúng",
-            "price": 8900000,
-            "image": "/images/dotho2.jpg",
-            "description": "Bộ đồ thờ 3 bát hương men rạn giả cổ sang trọng. Họa tiết Hoa Sen thanh cao mang lại sự thanh tịnh, bình an cho gia đạo.",
-            "featured": true,
-            "inStock": true,
-            "details": {
-                "material": "Gốm sứ men rạn đắp nổi Bát Tràng",
-                "craftsmanship": "Nung nhiệt độ cao 1300°C",
-                "suitableFor": "Bàn thờ Gia tiên kích thước 1m53 - 1m75"
-            },
-            "itemsIncluded": [
-                "3 Bát hương men rạn cổ",
-                "2 Lọ hoa dáng củ tỏi",
-                "3 Mâm bồng",
-                "1 Kỷ ngai 5 chén",
-                "3 Choé thờ",
-                "1 Bộ ấm chén cúng",
-                "2 Đèn dầu giả cổ",
-                "2 Cặp bát cúng",
-                "1 Ống hương",
-                "2 Cốc nước cúng"
-            ]
-        },
-        {
-            "id": "DT004",
-            "name": "Bộ Đồ Thờ Phật Giáo Men Rạn Hoa Sen Trang Nghiêm",
-            "category": "Gốm sứ tâm linh",
-            "price": 9500000,
-            "image": "/images/dotho3.jpg",
-            "description": "Chuyên dùng cho không gian thờ Phật hoặc Gia tiên kết hợp thờ Phật. Nước men rạn cổ kính kết hợp hoa văn Sen tịnh độ mang lại không khí trang nghiêm, ấm cúng.",
-            "featured": false,
-            "inStock": true,
-            "details": {
-                "material": "Gốm sứ Bát Tràng tráng men rạn",
-                "craftsmanship": "Họa tiết vẽ tay thủ công 100%",
-                "suitableFor": "Bàn thờ Phật, Gian thờ Thiền, Bàn thờ Gia tiên"
-            },
-            "itemsIncluded": [
-                "3 Bát hương men rạn họa tiết sen",
-                "2 Bình hoa dáng cao",
-                "3 Mâm bồng dâng lễ",
-                "1 Kỷ ngai 5 chén",
-                "3 Choé cúng",
-                "1 Bộ trà cúng",
-                "2 Đèn dầu cúng Phật",
-                "2 Cốc nước thờ thanh tịnh",
-                "1 Ống cắm hương"
-            ]
-        },
-        {
-            "id": "DT005",
-            "name": "Bộ Đồ Thờ Men Lam Cổ Rồng Chầu Bàn Thờ Tủ Thờ Gỗ Cổ",
-            "category": "Đồ thờ cúng",
-            "price": 12500000,
-            "image": "/images/dotho4.jpg",
-            "description": "Họa tiết Rồng thiêng vẽ men lam truyền thống trên nền gốm rạn cổ. Thiết kế uy nghi, đậm chất tâm linh Việt Nam, rất hợp với các mẫu bàn thờ gỗ gụ, gỗ hương đục đẽo cầu kỳ.",
-            "featured": true,
-            "inStock": true,
-            "details": {
-                "material": "Gốm sứ Bát Tràng men lam rạn",
-                "craftsmanship": "Rồng chầu mặt nguyệt vẽ tay tỉ mỉ",
-                "suitableFor": "Tủ thờ truyền thống, Án thờ đục chạm (Kích thước > 1m75)"
-            },
-            "itemsIncluded": [
-                "3 Bát hương Rồng chầu",
-                "2 Lọ hoa Rồng men lam",
-                "2 Mâm bồng lớn",
-                "1 Kỷ ngai 5 chén Rồng",
-                "3 Choé thờ",
-                "1 Nậm rượu",
-                "1 Bộ ấm chén cúng",
-                "1 Đèn dầu gốm",
-                "1 Ống cắm hương",
-                "1 Bộ bát cúng"
-            ]
-        },
-        {
-            "id": "DT006",
-            "name": "Bộ Đồ Thờ Gia Tiên Men Lam Rồng Phượng Chuẩn Phong Thủy",
-            "category": "Đồ thờ cúng",
-            "price": 11800000,
-            "image": "/images/dotho5.jpg",
-            "description": "Sự kết hợp giữa men lam truyền thống và chữ Phúc kim mạ vàng phía sau. Phù hợp cho các không gian thờ tự sang trọng, đẳng cấp gia tăng tài lộc và vượng khí.",
-            "featured": false,
-            "inStock": true,
-            "details": {
-                "material": "Gốm sứ cao cấp Bát Tràng",
-                "craftsmanship": "Men lam vẽ tay truyền thống",
-                "suitableFor": "Bàn thờ Gia tiên hiện đại & cổ điển (1m75 - 1m97)"
-            },
-            "itemsIncluded": [
-                "3 Bát hương Rồng Phượng",
-                "2 Lọ hoa dáng Lộc bình",
-                "2 Mâm bồng đựng quả",
-                "1 Kỷ ngai 5 chén",
-                "3 Choé thờ",
-                "1 Nậm rượu",
-                "1 Bộ chén trà cúng",
-                "1 Đèn dầu gốm sứ",
-                "2 Lọ hoa tiểu phụ",
-                "1 Ống hương"
-            ]
-        },
-        {
-            "id": "DT007",
-            "name": "Bộ Đồ Thờ Men Rạn Cổ Họa Tiết Hoa Sen Chữ Phúc",
-            "category": "Đồ thờ cúng",
-            "price": 8500000,
-            "image": "/images/dotho6.jpg",
-            "description": "Sự hài hòa giữa nét trầm mặc của men rạn cổ và nét thanh thoát của hoa văn Hoa Sen. Tạo cảm giác vô cùng ấm cúng và tôn nghiêm cho không gian thờ tự.",
-            "featured": false,
-            "inStock": true,
-            "details": {
-                "material": "Gốm sứ men rạn truyền thống",
-                "craftsmanship": "Chế tác thủ công Bát Tràng",
-                "suitableFor": "Bàn thờ đứng, Gian thờ chung cư cao cấp"
-            },
-            "itemsIncluded": [
-                "3 Bát hương họa tiết Sen",
-                "2 Lọ hoa dáng cao",
-                "3 Mâm bồng tròn",
-                "1 Kỷ ngai 5 chén",
-                "3 Choé cúng",
-                "2 Đèn dầu gốm",
-                "2 Cốc nước thờ",
-                "3 Bát cúng có nắp",
-                "1 Ống cắm hương"
-            ]
-        },
-        {
-            "id": "DT008",
-            "name": "Bộ Đồ Thờ Men Rạn Cổ Lửa Âm Dương Song Long Bát Hương",
-            "category": "Đồ phong thủy",
-            "price": 10200000,
-            "image": "/images/dotho7.jpg",
-            "description": "Họa tiết Song Long và Bát Quái/Thái Cực mang năng lượng phong thủy mạnh mẽ, xua đuổi tà khí, bảo vệ sự yên bình cho gia đạo.",
-            "featured": false,
-            "inStock": true,
-            "details": {
-                "material": "Gốm sứ Bát Tràng tráng men rạn cổ",
-                "craftsmanship": "Vẽ tay họa tiết Thái Cực & Rồng",
-                "suitableFor": "Bàn thờ Thần Linh, Bàn thờ Gia tiên, Nhà từ đường"
-            },
-            "itemsIncluded": [
-                "3 Bát hương họa tiết Thái Cực - Rồng",
-                "2 Lọ hoa dáng Lộc bình",
-                "2 Mâm bồng rộng",
-                "1 Kỷ ngai 5 chén",
-                "3 Choé cúng",
-                "2 Nậm rượu dáng hồ lô",
-                "1 Đèn dầu gốm sứ phong thủy"
-            ]
-        },
-        {
-            "id": 101,
-            "name": "Chum Rượu Sành Bát Tràng Hạ Thổ 20 Lít",
-            "category": "Chum rượu",
-            "price": "850.000 đ",
-            "image": "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=500",
-            "description": "Chum sành không tráng men giúp khử độc tố Aldehyde, thích hợp hạ thổ rượu."
-        },
-        {
-            "id": 102,
-            "name": "Chĩnh Gạo Sành Phong Thủy Tài Lộc 15kg",
-            "category": "Chĩnh gạo",
-            "price": "680.000 đ",
-            "image": "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=500",
-            "description": "Chĩnh gạo tráng men vẽ chữ Tài Lộc, giữ gạo chống ẩm mốc và mang lại may mắn."
-        },
-        {
-            "id": 103,
-            "name": "Chậu Cảnh Gốm Sứ Đất Nung Khảm Hoa Văn Bát Tràng",
-            "category": "Chậu cảnh",
-            "price": "450.000 đ",
-            "image": "https://images.unsplash.com/photo-1485955900006-10f4d324d411?w=500",
-            "description": "Chậu trồng cây cảnh, bonsai bằng gốm nung nhiệt độ cao durable và tinh xảo."
-        },
-        {
-            "id": "BHL-01",
-            "name": "Bình Hút Lộc Vẽ Vàng 24K Mã Đáo Thành Công (Đỏ Hoàng Gia)",
-            "category": "Đồ phong thủy",
-            "subCategory": "Bình hút tài lộc",
-            "price": 5400000,
-            "originalPrice": 6500000,
-            "height": "38cm - 40cm",
-            "material": "Gốm sứ Bát Tràng cao cấp, vẽ vàng 24K",
-            "color": "Đỏ Son Hoàng Gia",
-            "image": "/images/hutloc7.jpg",
-            "images": [
-                "/images/hutloc7.jpg"
-            ],
-            "status": "Còn hàng",
-            "meaning": "Bình hút lộc 'Mã Đáo Thành Công' mang tông màu đỏ son rực rỡ, tượng trưng cho hành Hỏa, sinh khí và may mắn đỉnh cao. Bát Mã (8 chú ngựa) phi nước đại thể hiện sức mạnh đoàn kết và sự bứt phá.",
-            "description": "Sản phẩm được chế tác thủ công bởi nghệ nhân Bát Tràng, nét vẽ vàng 24K sắc xảo trên nền men đỏ hoàng gia sang trọng."
-        },
-        {
-            "id": "BHL-02",
-            "name": "Bình Hút Lộc Vẽ Vàng 24K Thuận Buồm Xuôi Gió & Mã Đáo Thành Công (Ngũ Sắc Cổ Điển)",
-            "category": "Đồ phong thủy",
-            "subCategory": "Bình hút tài lộc",
-            "price": 5400000,
-            "originalPrice": 6500000,
-            "height": "33cm - 35cm",
-            "material": "Gốm sứ Bát Tràng cao cấp, vẽ vàng 24K",
-            "color": "Ngũ Sắc / Men Lam Cổ",
-            "image": "/images/hutloc.jpg",
-            "images": [
-                "/images/hutloc.jpg",
-                "/images/hutloc1.jpg",
-                "/images/hutloc2.jpg",
-                "/images/hutloc3.jpg"
-            ],
-            "status": "Còn hàng",
-            "meaning": "Kết hợp 2 mặt họa tiết 'Thuận Buồm Xuôi Gió' và 'Mã Đáo Thành Công' kèm 4 ô chữ thư pháp 'Thuận Buồm Xuôi Gió' & 'Vạn Sự Như Ý'. Mang lại sự hanh thông, công danh bền vững.",
-            "description": "Bình hút lộc đa chiều góc nhìn, xoay mặt nào cũng mang ý nghĩa cát tường. Men ngũ sắc Bát Tràng đắp nổi vẽ vàng 24K cao cấp."
-        },
-        {
-            "id": "BHL-03",
-            "name": "Bình Hút Lộc Vẽ Vàng 24K Thuận Buồm Xuôi Gió & Mã Đáo (Đỏ Mạ Vàng Sang Trọng)",
-            "category": "Đồ phong thủy",
-            "subCategory": "Bình hút tài lộc",
-            "price": 5400000,
-            "originalPrice": 6500000,
-            "height": "33cm - 35cm",
-            "material": "Gốm sứ Bát Tràng cao cấp, vẽ vàng 24K",
-            "color": "Đỏ Nổi Bật / Men Lam Thần",
-            "image": "/images/hutloc4.jpg",
-            "images": [
-                "/images/hutloc4.jpg",
-                "/images/hutloc5.jpg",
-                "/images/hutloc6.jpg"
-            ],
-            "status": "Còn hàng",
-            "meaning": "Sự kết hợp giữa gam màu đỏ may mắn và lòng thuyền xanh cùng chi tiết dát vàng 24K. Chiêu tài kích lộc mạnh mẽ, biểu tượng cho việc chở tài lộc về nhà.",
-            "description": "Thân bình tròn đặn, miệng loe cổ thắt - chuẩn dáng hút và giữ tài lộc theo phong thủy Bát Tràng."
+          "id": "DT003",
+          "name": "Bộ Đồ Thờ Men Rạn Cổ Họa Tiết Hoa Sen Tam Bát Hương",
+          "category": "Đồ thờ cúng",
+          "price": 8900000,
+          "image": "/images/dotho2.jpg",
+          "description": "Bộ đồ thờ 3 bát hương men rạn giả cổ sang trọng. Họa tiết Hoa Sen thanh cao mang lại sự thanh tịnh, bình an cho gia đạo.",
+          "featured": true,
+          "inStock": true,
+          "details": {
+            "material": "Gốm sứ men rạn đắp nổi Bát Tràng",
+            "craftsmanship": "Nung nhiệt độ cao 1300°C",
+            "suitableFor": "Bàn thờ Gia tiên kích thước 1m53 - 1m75"
+          },
+          "itemsIncluded": [
+            "3 Bát hương men rạn cổ",
+            "2 Lọ hoa dáng củ tỏi",
+            "3 Mâm bồng",
+            "1 Kỷ ngai 5 chén",
+            "3 Choé thờ",
+            "1 Bộ ấm chén cúng",
+            "2 Đèn dầu giả cổ",
+            "2 Cặp bát cúng",
+            "1 Ống hương",
+            "2 Cốc nước cúng"
+          ],
+          "quantity": 1
         }
-    ]
+      ],
+      "totalAmount": 8900000,
+      "status": "Đã xác nhận",
+      "createdAt": "22:09:26 28/7/2026"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

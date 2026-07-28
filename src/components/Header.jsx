@@ -7,6 +7,7 @@ function Header({
   setSelectedCategory,
   setSelectedProductId,
   totalCartCount,
+  setShowCart,
   setIsCartPage,
   currentUser,
   onOpenAuth,
@@ -16,21 +17,41 @@ function Header({
 }) {
   const [showMegaMenu, setShowMegaMenu] = useState(false);
 
-  // Hàm quay về Trang chủ hiển thị tất cả sản phẩm
-  const handleGoHome = () => {
+  // Helper reset các view phụ (Giỏ hàng, Chi tiết SP)
+  const resetSubViews = () => {
     setSelectedProductId(null);
+    if (setIsCartPage) setIsCartPage(false);
+  };
+
+  // 🏠 Quay về Trang chủ
+  const handleGoHome = () => {
+    resetSubViews();
     setIsAdminView(false);
     if (setIsUserPage) setIsUserPage(false);
-    if (setIsCartPage) setIsCartPage(false);
     setSelectedCategory('Tất cả');
     setSearchQuery('');
   };
 
+  // 👤 Mở trang thông tin User
   const handleOpenUserPage = () => {
+    resetSubViews();
     setIsAdminView(false);
-    setSelectedProductId(null);
     if (setIsUserPage) setIsUserPage(true);
-    if (setIsCartPage) setIsCartPage(false);
+  };
+
+  // ⚙️ Mở trang Admin
+  const handleOpenAdminView = () => {
+    resetSubViews();
+    if (setIsUserPage) setIsUserPage(false);
+    setIsAdminView(true);
+  };
+
+  // 🏷️ Chuyển Danh Mục
+  const handleSelectCategory = (catName) => {
+    resetSubViews();
+    if (setIsUserPage) setIsUserPage(false);
+    setIsAdminView(false);
+    setSelectedCategory(catName);
   };
 
   return (
@@ -42,13 +63,14 @@ function Header({
       </div>
 
       {/* 2. Main Navigation Bar */}
-      <Navbar style={{ backgroundColor: '#5e2828ff' }} expand="lg" className="py-3 border-bottom position-relative">
+      <Navbar style={{ backgroundColor: '#5e2828' }} expand="lg" className="py-3 border-bottom position-relative">
         <Container>
 
           {/* LOGO VÀ TÊN THƯƠNG HIỆU */}
           <Navbar.Brand
-            href="#"
+            as="div"
             onClick={handleGoHome}
+            style={{ cursor: 'pointer' }}
             className="fw-bold text-white fs-4 d-flex align-items-center gap-2 text-decoration-none"
           >
             {/* SVG LOGO */}
@@ -112,7 +134,14 @@ function Header({
 
           {/* Giỏ hàng & Đăng nhập / Tài khoản */}
           <Nav className="ms-auto align-items-center gap-3">
-            <Button variant="outline-light" className="position-relative" onClick={() => { if (setIsCartPage) setIsCartPage(true); setSelectedProductId(null); setIsAdminView(false); if (setIsUserPage) setIsUserPage(false); }}>
+            <Button
+              variant="outline-light"
+              className="position-relative d-flex align-items-center gap-2"
+              onClick={() => {
+                if (setShowCart) setShowCart(true);
+                else if (setIsCartPage) setIsCartPage(true);
+              }}
+            >
               🛒 Giỏ hàng
               {totalCartCount > 0 && (
                 <Badge bg="danger" className="position-absolute top-0 start-100 translate-middle rounded-pill">
@@ -123,7 +152,6 @@ function Header({
 
             {currentUser ? (
               <Dropdown align="end">
-                {/* 🔥 ĐÃ BỎ onClick={handleOpenUserPage} Ở ĐÂY ĐỂ MENU THẢ XUỐNG BÌNH THƯỜNG */}
                 <Dropdown.Toggle
                   variant="link"
                   id="dropdown-user"
@@ -136,7 +164,7 @@ function Header({
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu className="shadow-lg border-0 py-2 mt-2" style={{ minWidth: '230px' }}>
-                  <div className="px-3 py-2 mb-1 border-bottom bg-light cursor-pointer" onClick={handleOpenUserPage} style={{ cursor: 'pointer' }}>
+                  <div className="px-3 py-2 mb-1 border-bottom bg-light" onClick={handleOpenUserPage} style={{ cursor: 'pointer' }}>
                     <p className="mb-0 small text-muted">Tài khoản của bạn</p>
                     <p className="mb-0 fw-bold text-truncate text-dark" style={{ maxWidth: '190px' }}>
                       {currentUser.email || currentUser.username}
@@ -153,10 +181,11 @@ function Header({
                     📍 Sổ địa chỉ giao hàng
                   </Dropdown.Item>
 
+                  {/* CHỈ HIỂN THỊ ITEM ADMIN KHI ROLE LÀ ADMIN */}
                   {currentUser.role === 'admin' && (
                     <>
                       <Dropdown.Divider />
-                      <Dropdown.Item onClick={() => { setIsAdminView(true); if (setIsUserPage) setIsUserPage(false); }} className="py-2 text-danger fw-bold">
+                      <Dropdown.Item onClick={handleOpenAdminView} className="py-2 text-danger fw-bold">
                         ⚙️ Trang Quản Trị (Admin)
                       </Dropdown.Item>
                     </>
@@ -164,7 +193,6 @@ function Header({
 
                   <Dropdown.Divider />
 
-                  {/* 🎯 NÚT ĐĂNG XUẤT CỦA BRO Ở ĐÂY */}
                   <Dropdown.Item onClick={onLogout} className="py-2 text-danger fw-bold">
                     🚪 Đăng xuất
                   </Dropdown.Item>
@@ -184,7 +212,7 @@ function Header({
         <Container className="position-relative">
           <Nav className="gap-4 align-items-center justify-content-center justify-content-lg-start">
 
-            <Nav.Link href="#" onClick={handleGoHome} className="fw-bold text-dark py-3">
+            <Nav.Link as="div" onClick={handleGoHome} className="fw-bold text-dark py-3" style={{ cursor: 'pointer' }}>
               Trang chủ
             </Nav.Link>
 
@@ -195,55 +223,33 @@ function Header({
               onMouseEnter={() => setShowMegaMenu(true)}
               onMouseLeave={() => setShowMegaMenu(false)}
             >
-              <span className="fw-bold text-danger cursor-pointer py-1" style={{ cursor: 'pointer' }}>
+              <span className="fw-bold text-danger py-1" style={{ cursor: 'pointer' }}>
                 SẢN PHẨM ▾
               </span>
 
               {showMegaMenu && (
                 <div
-                  className="position-absolute start-0 w-100 bg-white shadow-lg p-4 border rounded-bottom animate-fade-in"
+                  className="position-absolute start-0 w-100 bg-white shadow-lg p-4 border rounded-bottom"
                   style={{ top: '100%', zIndex: 1050, borderTop: '3px solid #dc3545', marginTop: '0px' }}
                 >
                   <Row>
                     <Col md={3}>
                       <h6 className="text-danger fw-bold border-bottom pb-2 mb-3">ĐỒ THỜ CÚNG</h6>
                       <ul className="list-unstyled d-flex flex-column gap-2 small mb-0">
-                        <li>
-                          <button
-                            type="button"
-                            className="btn btn-link text-dark text-decoration-none p-0 text-start border-0"
-                            onClick={() => { setSelectedCategory('Đồ thờ cúng'); setShowMegaMenu(false); if (setIsUserPage) setIsUserPage(false); }}
-                          >
-                            Bộ đồ ăn / Bộ thờ
-                          </button>
-                        </li>
-                        <li>
-                          <button
-                            type="button"
-                            className="btn btn-link text-dark text-decoration-none p-0 text-start border-0"
-                            onClick={() => { setSelectedCategory('Đồ thờ cúng'); setShowMegaMenu(false); if (setIsUserPage) setIsUserPage(false); }}
-                          >
-                            Chén, Chén chấm
-                          </button>
-                        </li>
-                        <li>
-                          <button
-                            type="button"
-                            className="btn btn-link text-dark text-decoration-none p-0 text-start border-0"
-                            onClick={() => { setSelectedCategory('Đồ thờ cúng'); setShowMegaMenu(false); if (setIsUserPage) setIsUserPage(false); }}
-                          >
-                            Lộc bình, Bát hương
-                          </button>
-                        </li>
-                        <li>
-                          <button
-                            type="button"
-                            className="btn btn-link text-dark text-decoration-none p-0 text-start border-0"
-                            onClick={() => { setSelectedCategory('Đồ thờ cúng'); setShowMegaMenu(false); if (setIsUserPage) setIsUserPage(false); }}
-                          >
-                            Mâm bồng, Kỷ nước
-                          </button>
-                        </li>
+                        {['Bộ đồ ăn / Bộ thờ', 'Chén, Chén chấm', 'Lộc bình, Bát hương', 'Mâm bồng, Kỷ nước'].map((subItem, idx) => (
+                          <li key={idx}>
+                            <button
+                              type="button"
+                              className="btn btn-link text-dark text-decoration-none p-0 text-start border-0"
+                              onClick={() => {
+                                handleSelectCategory('Đồ thờ cúng');
+                                setShowMegaMenu(false);
+                              }}
+                            >
+                              {subItem}
+                            </button>
+                          </li>
+                        ))}
                       </ul>
                     </Col>
 
@@ -254,7 +260,7 @@ function Header({
                           <button
                             type="button"
                             className="btn btn-link text-dark text-decoration-none p-0 text-start border-0"
-                            onClick={() => { setSelectedCategory('Chum rượu'); setShowMegaMenu(false); if (setIsUserPage) setIsUserPage(false); }}
+                            onClick={() => { handleSelectCategory('Chum rượu'); setShowMegaMenu(false); }}
                           >
                             🍶 Chum Rượu Bát Tràng
                           </button>
@@ -263,7 +269,7 @@ function Header({
                           <button
                             type="button"
                             className="btn btn-link text-dark text-decoration-none p-0 text-start border-0"
-                            onClick={() => { setSelectedCategory('Chĩnh gạo'); setShowMegaMenu(false); if (setIsUserPage) setIsUserPage(false); }}
+                            onClick={() => { handleSelectCategory('Chĩnh gạo'); setShowMegaMenu(false); }}
                           >
                             🌾 Chĩnh Gạo Tài Lộc
                           </button>
@@ -272,7 +278,7 @@ function Header({
                           <button
                             type="button"
                             className="btn btn-link text-dark text-decoration-none p-0 text-start border-0"
-                            onClick={() => { setSelectedCategory('Chậu cảnh'); setShowMegaMenu(false); if (setIsUserPage) setIsUserPage(false); }}
+                            onClick={() => { handleSelectCategory('Chậu cảnh'); setShowMegaMenu(false); }}
                           >
                             🪴 Chậu Cảnh Nghệ Thuật
                           </button>
@@ -281,7 +287,7 @@ function Header({
                           <button
                             type="button"
                             className="btn btn-link text-dark text-decoration-none p-0 text-start border-0"
-                            onClick={() => { setSelectedCategory('Đồ phong thủy'); setShowMegaMenu(false); if (setIsUserPage) setIsUserPage(false); }}
+                            onClick={() => { handleSelectCategory('Đồ phong thủy'); setShowMegaMenu(false); }}
                           >
                             Tượng Linh Vật & Bình Hoa
                           </button>
@@ -293,9 +299,15 @@ function Header({
               )}
             </div>
 
-            <Nav.Link href="#" onClick={() => { setSelectedCategory('Đồ thờ cúng'); if (setIsUserPage) setIsUserPage(false); }} className="text-dark py-3">Đồ Thờ Cúng</Nav.Link>
-            <Nav.Link href="#" onClick={() => { setSelectedCategory('Đồ phong thủy'); if (setIsUserPage) setIsUserPage(false); }} className="text-dark py-3">Đồ Phong Thủy</Nav.Link>
-            <Nav.Link href="#" onClick={() => { setSelectedCategory('Gốm sứ tâm linh'); if (setIsUserPage) setIsUserPage(false); }} className="text-dark py-3">Tâm Linh</Nav.Link>
+            <Nav.Link as="div" onClick={() => handleSelectCategory('Đồ thờ cúng')} className="text-dark py-3" style={{ cursor: 'pointer' }}>
+              Đồ Thờ Cúng
+            </Nav.Link>
+            <Nav.Link as="div" onClick={() => handleSelectCategory('Đồ phong thủy')} className="text-dark py-3" style={{ cursor: 'pointer' }}>
+              Đồ Phong Thủy
+            </Nav.Link>
+            <Nav.Link as="div" onClick={() => handleSelectCategory('Gốm sứ tâm linh')} className="text-dark py-3" style={{ cursor: 'pointer' }}>
+              Tâm Linh
+            </Nav.Link>
           </Nav>
         </Container>
       </div>

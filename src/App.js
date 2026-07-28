@@ -40,10 +40,14 @@ function App() {
     description: ''
   });
 
-  // 🎯 Lấy user đã lưu trong localStorage khi vừa mở App
+  // 🎯 Lấy user đã lưu trong localStorage khi vừa mở App (Lưu ý key là "user")
   const [currentUser, setCurrentUser] = useState(() => {
-    const savedUser = localStorage.getItem("user");
-    return savedUser ? JSON.parse(savedUser) : null;
+    try {
+      const savedUser = localStorage.getItem("user");
+      return savedUser ? JSON.parse(savedUser) : null;
+    } catch (e) {
+      return null;
+    }
   });
 
   // 🎯 State lưu sản phẩm đang chờ thêm (nếu bắt đăng nhập trước)
@@ -53,7 +57,7 @@ function App() {
   const [isAdminView, setIsAdminView] = useState(false);
   const [isUserPage, setIsUserPage] = useState(false);
 
-  // Tải danh sách sản phẩm từ database.json hoặc json-server
+  // Tải danh sách sản phẩm từ database.json
   useEffect(() => {
     setLoading(true);
     fetch('/database.json')
@@ -103,12 +107,7 @@ function App() {
       body: JSON.stringify({ status: newStatus })
     })
       .then(res => {
-        if (res.ok) {
-          setOrders(prev => prev.map(o => o.id === orderId ? { ...o, status: newStatus } : o));
-        } else {
-          // Fallback cập nhật ở giao diện nếu server không response PATCH
-          setOrders(prev => prev.map(o => o.id === orderId ? { ...o, status: newStatus } : o));
-        }
+        setOrders(prev => prev.map(o => o.id === orderId ? { ...o, status: newStatus } : o));
       })
       .catch(() => {
         setOrders(prev => prev.map(o => o.id === orderId ? { ...o, status: newStatus } : o));
@@ -197,6 +196,7 @@ function App() {
   const selectedProduct = products.find(p => p.id === selectedProductId);
   const totalCartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
 
+  // 🎯 XỬ LÝ KHI ĐĂNG NHẬP THÀNH CÔNG
   const handleLoginSuccess = (user) => {
     setCurrentUser(user);
     localStorage.setItem("user", JSON.stringify(user));
@@ -208,6 +208,7 @@ function App() {
     }
   };
 
+  // 🎯 XỬ LÝ ĐĂNG XUẤT
   const handleLogout = () => {
     setCurrentUser(null);
     localStorage.removeItem("user");

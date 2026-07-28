@@ -8,31 +8,93 @@ function AuthModal({ show, onHide, onLoginSuccess }) {
     const [fullName, setFullName] = useState('');
     const [error, setError] = useState('');
 
+    // Lấy danh sách users đã đăng ký từ localStorage
+    const getUsersFromStorage = () => {
+        try {
+            const users = localStorage.getItem('registeredUsers');
+            return users ? JSON.parse(users) : [];
+        } catch (e) {
+            return [];
+        }
+    };
+
+    // Hàm kiểm tra định dạng email bằng Regex
+    const validateEmail = (email) => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
         setError('');
 
-        if (!username || !password) {
+        const trimmedUser = username.trim();
+        const trimmedPass = password.trim();
+
+        if (!trimmedUser || !trimmedPass) {
             setError('Vui lòng điền đầy đủ thông tin!');
             return;
         }
 
+        const currentUsers = getUsersFromStorage();
+
         if (isRegister) {
-            // Giả lập Đăng ký thành công (Default vai trò là user)
-            const newUser = { username, fullName: fullName || username, role: 'user' };
-            alert('Đăng ký tài khoản thành công!');
-            onLoginSuccess(newUser);
-            onHide();
+            // --- LOGIC ĐĂNG KÝ ---
+
+            // 🎯 Check định dạng Email
+            if (!validateEmail(trimmedUser)) {
+                setError('⚠️ Email không đúng định dạng! Vui lòng nhập dạng email (Ví dụ: abc@gmail.com)');
+                return;
+            }
+
+            const existingUser = currentUsers.find(
+                (u) => u.username.toLowerCase() === trimmedUser.toLowerCase()
+            );
+
+            if (existingUser || trimmedUser.toLowerCase() === 'admin') {
+                setError('Tài khoản/Email này đã tồn tại, vui lòng chọn email khác!');
+                return;
+            }
+
+            // Tạo user mới
+            const newUser = {
+                username: trimmedUser,
+                password: trimmedPass,
+                fullName: fullName.trim() || trimmedUser,
+                role: 'user'
+            };
+
+            // Lưu danh sách mới vào localStorage
+            const updatedUsers = [...currentUsers, newUser];
+            localStorage.setItem('registeredUsers', JSON.stringify(updatedUsers));
+
+            alert('🎉 Đăng ký tài khoản thành công! Hãy đăng nhập lại.');
+            setIsRegister(false); // Chuyển sang form đăng nhập
+            setPassword('');
         } else {
-            // Giả lập Đăng nhập (Mẫu tài khoản Admin & User)
-            if (username === 'admin' && password === 'admin123') {
+            // --- LOGIC ĐĂNG NHẬP ---
+
+            // 1. Kiểm tra tài khoản Admin mặc định
+            if (trimmedUser === 'admin' && trimmedPass === 'admin123') {
                 onLoginSuccess({ username: 'admin', fullName: 'Quản Trị Viên', role: 'admin' });
                 onHide();
-            } else if (password) {
-                onLoginSuccess({ username, fullName: username, role: 'user' });
+                return;
+            }
+
+            // 2. Kiểm tra đối chiếu với danh sách user đã đăng ký
+            const foundUser = currentUsers.find(
+                (u) => u.username === trimmedUser && u.password === trimmedPass
+            );
+
+            if (foundUser) {
+                onLoginSuccess({
+                    username: foundUser.username,
+                    fullName: foundUser.fullName || foundUser.username,
+                    role: foundUser.role || 'user'
+                });
                 onHide();
             } else {
-                setError('Tài khoản hoặc mật khẩu không chính xác!');
+                setError('❌ Tài khoản hoặc mật khẩu không chính xác!');
             }
         }
     };
@@ -59,14 +121,13 @@ function AuthModal({ show, onHide, onLoginSuccess }) {
                     )}
 
                     <Form.Group className="mb-3">
-                        <Form.Label>Tên đăng nhập / Email</Form.Label>
+                        <Form.Label>{isRegister ? 'Email' : 'Tên đăng nhập / Email'}</Form.Label>
                         <Form.Control
-                            type="text"
-                            placeholder="Nhập tên đăng nhập"
+                            type={isRegister ? "email" : "text"}
+                            placeholder={isRegister ? "nhapemail@gmail.com" : "Nhập tên đăng nhập hoặc Email"}
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
                         />
-
                     </Form.Group>
 
                     <Form.Group className="mb-3">
@@ -90,7 +151,10 @@ function AuthModal({ show, onHide, onLoginSuccess }) {
                         <span
                             className="text-danger fw-bold cursor-pointer"
                             style={{ cursor: 'pointer' }}
-                            onClick={() => { setIsRegister(!isRegister); setError(''); }}
+                            onClick={() => {
+                                setIsRegister(!isRegister);
+                                setError('');
+                            }}
                         >
                             {isRegister ? 'Đăng nhập ngay' : 'Đăng ký mới'}
                         </span>

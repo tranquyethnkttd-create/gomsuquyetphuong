@@ -17,12 +17,35 @@ function CartPage({ cart, removeFromCart, updateCartQuantity, setCart, onBackToH
 
   const totalAmount = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
-  // 🎯 XỬ LÝ ĐẶT HÀNG & GỬI EMAIL THÔNG BÁO CHO ADMIN
+  // 🎯 XỬ LÝ ĐẶT HÀNG & LƯU ĐƠN HÀNG VÀO LOCALSTORAGE + GỬI EMAIL
   const handleCheckoutSubmit = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // 1. Tạo chuỗi danh sách sản phẩm đẹp mắt để đưa vào {{order_items}} trong template email
+    // 📦 1. TẠO ĐỐI TƯỢNG ĐƠN HÀNG MỚI ĐỂ LƯU VÀO LOCALSTORAGE CHO ADMIN
+    const newOrder = {
+      id: 'DH' + Date.now().toString().slice(-6), // Mã đơn ví dụ: DH382910
+      customerName: formData.name,
+      phone: formData.phone,
+      address: formData.address,
+      note: formData.note || 'Không có ghi chú',
+      items: cart, // Danh sách các sản phẩm khách mua
+      totalAmount: totalAmount,
+      paymentMethod: formData.paymentMethod === 'COD' ? 'Thanh toán khi nhận hàng (COD)' : 'Chuyển khoản ngân hàng',
+      status: 'Chờ xử lý', // Trạng thái mặc định để Admin lọc
+      createdAt: new Date().toLocaleString('vi-VN')
+    };
+
+    // 💾 2. LƯU ĐƠN HÀNG VÀO LOCALSTORAGE
+    try {
+      const existingOrders = JSON.parse(localStorage.getItem('orders')) || [];
+      const updatedOrders = [newOrder, ...existingOrders];
+      localStorage.setItem('orders', JSON.stringify(updatedOrders));
+    } catch (error) {
+      console.error('Lỗi khi lưu đơn hàng vào localStorage:', error);
+    }
+
+    // 📧 3. Chuẩn bị chuỗi sản phẩm & tham số gửi EmailJS
     const orderItemsString = cart
       .map(
         (item, index) =>
@@ -30,7 +53,6 @@ function CartPage({ cart, removeFromCart, updateCartQuantity, setCart, onBackToH
       )
       .join('\n');
 
-    // 2. Chuẩn bị dữ liệu gửi EmailJS
     const templateParams = {
       customer_name: formData.name,
       customer_phone: formData.phone,
@@ -41,7 +63,7 @@ function CartPage({ cart, removeFromCart, updateCartQuantity, setCart, onBackToH
       payment_method: formData.paymentMethod === 'COD' ? 'Thanh toán khi nhận hàng (COD)' : 'Chuyển khoản ngân hàng'
     };
 
-    // 3. Gửi Email thông báo về Gmail Admin qua EmailJS
+    // 📨 4. Gửi Email thông báo về Gmail Admin
     emailjs
       .send(
         'service_0noctvj',
@@ -52,7 +74,7 @@ function CartPage({ cart, removeFromCart, updateCartQuantity, setCart, onBackToH
       .then(
         (response) => {
           console.log('Gửi email thông báo đơn hàng thành công!', response.status, response.text);
-          alert('🎉 Đặt hàng thành công! Đơn hàng của ông đã được gửi trực tiếp về Gmail Admin.');
+          alert('🎉 Đặt hàng thành công! Đơn hàng của ông đã được ghi nhận.');
 
           // Reset giỏ hàng và đóng Modal
           setCart([]);
@@ -61,7 +83,7 @@ function CartPage({ cart, removeFromCart, updateCartQuantity, setCart, onBackToH
         },
         (error) => {
           console.error('Lỗi khi gửi email:', error);
-          alert('Đặt hàng thành công! (Lỗi gửi email thông báo, nhưng đơn vẫn ghi nhận).');
+          alert('🎉 Đặt hàng thành công! Đơn hàng đã được ghi nhận hệ thống.');
           setCart([]);
           setShowCheckoutModal(false);
           onBackToHome();

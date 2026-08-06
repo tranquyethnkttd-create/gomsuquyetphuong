@@ -77,12 +77,32 @@ function App() {
       });
   }, []);
 
-  // Tải danh sách đơn hàng từ json-server khi Admin truy cập
+  // 🎯 TẢI DANH SÁCH ĐƠN HÀNG TỪ LOCALSTORAGE (VỚI FALLBACK KHI ADMIN XEM)
   const fetchOrders = () => {
+    try {
+      const localOrders = JSON.parse(localStorage.getItem('orders'));
+      if (localOrders && Array.isArray(localOrders) && localOrders.length > 0) {
+        setOrders(localOrders);
+        return;
+      }
+    } catch (e) {
+      console.error('Lỗi đọc orders từ localStorage:', e);
+    }
+
+    // Nếu localStorage trống, thử lấy từ json-server làm dự phòng
     fetch('http://localhost:3001/orders')
       .then(res => res.json())
-      .then(data => setOrders(Array.isArray(data) ? data : []))
-      .catch(err => console.error('Chưa thể lấy danh sách đơn hàng từ json-server:', err));
+      .then(data => {
+        const fetchedOrders = Array.isArray(data) ? data : [];
+        setOrders(fetchedOrders);
+        if (fetchedOrders.length > 0) {
+          localStorage.setItem('orders', JSON.stringify(fetchedOrders));
+        }
+      })
+      .catch(err => {
+        console.error('Chưa thể lấy danh sách đơn hàng từ json-server:', err);
+        setOrders([]);
+      });
   };
 
   useEffect(() => {
@@ -99,19 +119,21 @@ function App() {
     setIsAdminView(true);
   };
 
-  // Cập nhật trạng thái đơn hàng (Admin)
+  // 🎯 CẬP NHẬT TRẠNG THÁI ĐƠN HÀNG & LƯU VÀO LOCALSTORAGE (ADMIN)
   const handleUpdateOrderStatus = (orderId, newStatus) => {
+    setOrders(prev => {
+      const updatedOrders = prev.map(o => o.id === orderId ? { ...o, status: newStatus } : o);
+      // Đồng bộ lại vào localStorage
+      localStorage.setItem('orders', JSON.stringify(updatedOrders));
+      return updatedOrders;
+    });
+
+    // Cập nhật thử lên json-server (nếu có dùng backend)
     fetch(`http://localhost:3001/orders/${orderId}`, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ status: newStatus })
-    })
-      .then(res => {
-        setOrders(prev => prev.map(o => o.id === orderId ? { ...o, status: newStatus } : o));
-      })
-      .catch(() => {
-        setOrders(prev => prev.map(o => o.id === orderId ? { ...o, status: newStatus } : o));
-      });
+    }).catch(() => { });
   };
 
   // Mở Modal Thêm/Sửa sản phẩm
@@ -230,7 +252,7 @@ function App() {
       case 'Đang giao': return <Badge bg="primary">Đang giao</Badge>;
       case 'Đã giao': return <Badge bg="success">Đã giao</Badge>;
       case 'Đã hủy': return <Badge bg="secondary">Đã hủy</Badge>;
-      default: return <Badge bg="warning" text="dark">Chờ xác nhận</Badge>;
+      default: return <Badge bg="warning" text="dark">Chờ xử lý</Badge>;
     }
   };
 
@@ -294,6 +316,7 @@ function App() {
                     onChange={(e) => setOrderFilterStatus(e.target.value)}
                   >
                     <option value="Tất cả">Tất cả đơn hàng</option>
+                    <option value="Chờ xử lý">Chờ xử lý</option>
                     <option value="Chờ xác nhận">Chờ xác nhận</option>
                     <option value="Đã xác nhận">Đã xác nhận</option>
                     <option value="Đang giao">Đang giao</option>
@@ -346,9 +369,10 @@ function App() {
                         <td>
                           <Form.Select
                             size="sm"
-                            value={order.status || 'Chờ xác nhận'}
+                            value={order.status || 'Chờ xử lý'}
                             onChange={(e) => handleUpdateOrderStatus(order.id, e.target.value)}
                           >
+                            <option value="Chờ xử lý">Chờ xử lý</option>
                             <option value="Chờ xác nhận">Chờ xác nhận</option>
                             <option value="Đã xác nhận">Đã xác nhận</option>
                             <option value="Đang giao">Đang giao</option>
